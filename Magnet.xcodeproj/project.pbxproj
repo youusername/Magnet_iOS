@@ -16,6 +16,9 @@
 		613F49671F9A143E0083CB50 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F49661F9A143E0083CB50 /* main.m */; };
 		613F49741F9A229D0083CB50 /* TagsScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F49721F9A227A0083CB50 /* TagsScrollView.m */; };
 		613F49751F9A229F0083CB50 /* MagnetXNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F496F1F9A155B0083CB50 /* MagnetXNotification.m */; };
+		613F49771F9A2F4F0083CB50 /* rule.json in Resources */ = {isa = PBXBuildFile; fileRef = 613F49761F9A2F450083CB50 /* rule.json */; };
+		613F49791F9A2FDF0083CB50 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F49781F9A2FDF0083CB50 /* MobileCoreServices.framework */; };
+		613F497C1F9A30E00083CB50 /* DownHtml.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F497A1F9A30E00083CB50 /* DownHtml.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,10 @@
 		613F496F1F9A155B0083CB50 /* MagnetXNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagnetXNotification.m; sourceTree = "<group>"; };
 		613F49721F9A227A0083CB50 /* TagsScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagsScrollView.m; sourceTree = "<group>"; };
 		613F49731F9A227A0083CB50 /* TagsScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagsScrollView.h; sourceTree = "<group>"; };
+		613F49761F9A2F450083CB50 /* rule.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rule.json; sourceTree = "<group>"; };
+		613F49781F9A2FDF0083CB50 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		613F497A1F9A30E00083CB50 /* DownHtml.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownHtml.m; sourceTree = "<group>"; };
+		613F497B1F9A30E00083CB50 /* DownHtml.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownHtml.h; sourceTree = "<group>"; };
 		803F1DECBE90BF38C12CB897 /* Pods-Magnet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magnet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Magnet/Pods-Magnet.release.xcconfig"; sourceTree = "<group>"; };
 		B25187C76E21EE0D0D668904 /* Pods-Magnet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magnet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Magnet/Pods-Magnet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -43,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				613F49791F9A2FDF0083CB50 /* MobileCoreServices.framework in Frameworks */,
 				119339B6DB5D4BE4F69E2395 /* Pods_Magnet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,6 +61,7 @@
 		211B6452A84574FE9DBB45D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				613F49781F9A2FDF0083CB50 /* MobileCoreServices.framework */,
 				4C6ED82452B5B14F29A1AA60 /* Pods_Magnet.framework */,
 			);
 			name = Frameworks;
@@ -88,6 +97,7 @@
 				613F49601F9A143E0083CB50 /* Assets.xcassets */,
 				613F49621F9A143E0083CB50 /* LaunchScreen.storyboard */,
 				613F49651F9A143E0083CB50 /* Info.plist */,
+				613F49761F9A2F450083CB50 /* rule.json */,
 				613F49661F9A143E0083CB50 /* main.m */,
 			);
 			path = Magnet;
@@ -96,6 +106,8 @@
 		613F496D1F9A153A0083CB50 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				613F497B1F9A30E00083CB50 /* DownHtml.h */,
+				613F497A1F9A30E00083CB50 /* DownHtml.m */,
 				613F496E1F9A155B0083CB50 /* MagnetXNotification.h */,
 				613F496F1F9A155B0083CB50 /* MagnetXNotification.m */,
 			);
@@ -191,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				613F49641F9A143E0083CB50 /* LaunchScreen.storyboard in Resources */,
+				613F49771F9A2F4F0083CB50 /* rule.json in Resources */,
 				613F49611F9A143E0083CB50 /* Assets.xcassets in Resources */,
 				613F495F1F9A143E0083CB50 /* Main.storyboard in Resources */,
 			);
@@ -206,11 +219,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Magnet/Pods-Magnet-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Ono/Ono.framework",
 				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ono.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 			);
@@ -263,6 +278,7 @@
 				613F49741F9A229D0083CB50 /* TagsScrollView.m in Sources */,
 				613F49671F9A143E0083CB50 /* main.m in Sources */,
 				613F49751F9A229F0083CB50 /* MagnetXNotification.m in Sources */,
+				613F497C1F9A30E00083CB50 /* DownHtml.m in Sources */,
 				613F49591F9A143E0083CB50 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

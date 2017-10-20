@@ -6,6 +6,7 @@ target 'Magnet' do
   use_frameworks!
 
   # Pods for Magnet
-pod 'Ono'
-pod 'YYKit', :inhibit_warnings => true
+  pod 'Ono'
+  pod 'AFNetworking'
+  pod 'YYKit', :inhibit_warnings => true
 end
