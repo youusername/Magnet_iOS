@@ -18,7 +18,7 @@
     });
     return downHtml;
 }
-- (void)downloadHtmlURLString:(NSString *)urlString willStartBlock:(void(^)(void)) startBlock success:(void(^)(NSData*data)) successHandler failure:(void(^)(NSError *error)) failureHandler{
+- (void)downloadHtmlURLString:(NSString *)urlString progressBlock:(void(^)(NSProgress * downloadProgress)) progress success:(void(^)(NSData*data)) successHandler failure:(void(^)(NSError *error)) failureHandler{
 //    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 //    NSURLSession * session = [NSURLSession sharedSession];
 //    NSURLSessionDataTask * dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -36,13 +36,16 @@
 //        });
 //    }];
 //    [dataTask resume];
-    if (startBlock) {
-        startBlock();
-    }
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", @"text/json", nil];
-    [manager GET:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+    [manager GET:urlString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        if (progress) {
+            progress(downloadProgress);
+        }
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         dispatch_async(dispatch_queue_create("download html queue", nil), ^{
             
