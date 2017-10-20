@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "TagsScrollView.h"
+#import "YYKit.h"
 
 @interface ViewController ()
 
@@ -16,7 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    TagsScrollView *tagView = [[TagsScrollView alloc]initWithFrame:CGRectMake(0, 100, kScreenWidth, 40)];
+    [tagView loadTagScrollViewButton:@[@"asd",@"dsdw",@"fdwg",@"ferb",@"ebr",@"asd",@"dsdw",@"fdwg",@"ferb",@"ebr"]];
+    [self.view addSubview:tagView];
 }
 
 
