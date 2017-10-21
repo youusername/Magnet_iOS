@@ -67,6 +67,7 @@
     
     TagsScrollView *tagView = [[TagsScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
     tagView.TagsDelegate = self;
+    tagView.backgroundColor = [UIColor whiteColor];
     [tagView loadTagScrollViewButton:tags];
     return tagView;
 }
