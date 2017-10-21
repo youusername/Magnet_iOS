@@ -6,38 +6,63 @@
 //  Copyright © 2017年 214644496@qq.com. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "TagsScrollView.h"
 #import "YYKit.h"
-#import <WebKit/WebKit.h>
 #import "DownHtml.h"
+#import "RuleModel.h"
+#import <WebKit/WebKit.h>
 
-@interface ViewController ()<WKUIDelegate,WKNavigationDelegate>
-@property (nonatomic,strong) WKWebView*web;
+#import "ResultDataModel.h"
+#import "MainViewController.h"
+#import "KeywordsViewController.h"
+
+@interface MainViewController ()<WKUIDelegate,WKNavigationDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *keyTextField;
+
+
+
+
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    TagsScrollView *tagView = [[TagsScrollView alloc]initWithFrame:CGRectMake(0, 100, kScreenWidth, 40)];
-    [tagView loadTagScrollViewButton:@[@"asd",@"dsdw",@"fdwg",@"ferb",@"ebr",@"asd",@"dsdw",@"fdwg",@"ferb",@"ebr"]];
-    [self.view addSubview:tagView];
-    NSString *url = @"http://www.cilizhuzhu.org/torrent/%E6%88%91%E7%9A%84%E6%88%98%E4%BA%89.html";
-    self.web =[[WKWebView alloc]initWithFrame:CGRectZero];
-    self.web.UIDelegate = self;
-    self.web.navigationDelegate = self;
-    [self.web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
-//    [self.view addSubview:self.web];
-    [[DownHtml downloader] downloadHtmlURLString:url willStartBlock:^{
-        
-    } success:^(NSData*data) {
-        NSLog(@"DownHtml_Done");
 
-    } failure:^(NSError *error) {
-        
-    }];
+ 
 }
+
+#pragma mark - init
+
+
+
+
+
+- (IBAction)beginAction:(id)sender {
+    
+    NSString *searchString = self.keyTextField.text;
+    
+    if (!searchString || [searchString isEqualToString:@""]) {
+        NSLog(@"textField nil");
+        return;
+    }
+    
+    NSString *regexString = @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexString];
+    BOOL isMatch = [pred evaluateWithObject:searchString];
+    
+    if (isMatch) {
+     
+    }else{
+        
+        KeywordsViewController *keyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"KeywordsViewController"];
+        keyVC.keyString = searchString;
+        [self.navigationController pushViewController:keyVC animated:YES];
+        
+    }
+    
+}
+
+
 #pragma mark - WKNavigationDelegate
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{

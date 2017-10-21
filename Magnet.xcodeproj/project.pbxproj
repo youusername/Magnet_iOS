@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		119339B6DB5D4BE4F69E2395 /* Pods_Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6ED82452B5B14F29A1AA60 /* Pods_Magnet.framework */; };
 		613F49591F9A143E0083CB50 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F49581F9A143E0083CB50 /* AppDelegate.m */; };
-		613F495C1F9A143E0083CB50 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F495B1F9A143E0083CB50 /* ViewController.m */; };
+		613F495C1F9A143E0083CB50 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F495B1F9A143E0083CB50 /* MainViewController.m */; };
 		613F495F1F9A143E0083CB50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 613F495D1F9A143E0083CB50 /* Main.storyboard */; };
 		613F49611F9A143E0083CB50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 613F49601F9A143E0083CB50 /* Assets.xcassets */; };
 		613F49641F9A143E0083CB50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 613F49621F9A143E0083CB50 /* LaunchScreen.storyboard */; };
@@ -19,6 +19,10 @@
 		613F49771F9A2F4F0083CB50 /* rule.json in Resources */ = {isa = PBXBuildFile; fileRef = 613F49761F9A2F450083CB50 /* rule.json */; };
 		613F49791F9A2FDF0083CB50 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F49781F9A2FDF0083CB50 /* MobileCoreServices.framework */; };
 		613F497C1F9A30E00083CB50 /* DownHtml.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F497A1F9A30E00083CB50 /* DownHtml.m */; };
+		6161E4051F9AEB3D00E8851F /* KeywordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6161E4041F9AEB3D00E8851F /* KeywordsViewController.m */; };
+		6161E4081F9B1AC400E8851F /* KeywordsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6161E4071F9B1AC400E8851F /* KeywordsTableViewCell.m */; };
+		6181FABA1F9AE10500F5FE65 /* ResultDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6181FAB81F9AE10500F5FE65 /* ResultDataModel.m */; };
+		6181FABD1F9AE3C800F5FE65 /* RuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6181FABC1F9AE3C800F5FE65 /* RuleModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +30,8 @@
 		613F49541F9A143E0083CB50 /* Magnet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Magnet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		613F49571F9A143E0083CB50 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		613F49581F9A143E0083CB50 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		613F495A1F9A143E0083CB50 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		613F495B1F9A143E0083CB50 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		613F495A1F9A143E0083CB50 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		613F495B1F9A143E0083CB50 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		613F495E1F9A143E0083CB50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		613F49601F9A143E0083CB50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		613F49631F9A143E0083CB50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -41,6 +45,14 @@
 		613F49781F9A2FDF0083CB50 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		613F497A1F9A30E00083CB50 /* DownHtml.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownHtml.m; sourceTree = "<group>"; };
 		613F497B1F9A30E00083CB50 /* DownHtml.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownHtml.h; sourceTree = "<group>"; };
+		6161E4031F9AEB3D00E8851F /* KeywordsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeywordsViewController.h; sourceTree = "<group>"; };
+		6161E4041F9AEB3D00E8851F /* KeywordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeywordsViewController.m; sourceTree = "<group>"; };
+		6161E4061F9B1AC400E8851F /* KeywordsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeywordsTableViewCell.h; sourceTree = "<group>"; };
+		6161E4071F9B1AC400E8851F /* KeywordsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeywordsTableViewCell.m; sourceTree = "<group>"; };
+		6181FAB81F9AE10500F5FE65 /* ResultDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultDataModel.m; sourceTree = "<group>"; };
+		6181FAB91F9AE10500F5FE65 /* ResultDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResultDataModel.h; sourceTree = "<group>"; };
+		6181FABB1F9AE3C700F5FE65 /* RuleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleModel.h; sourceTree = "<group>"; };
+		6181FABC1F9AE3C800F5FE65 /* RuleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuleModel.m; sourceTree = "<group>"; };
 		803F1DECBE90BF38C12CB897 /* Pods-Magnet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magnet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Magnet/Pods-Magnet.release.xcconfig"; sourceTree = "<group>"; };
 		B25187C76E21EE0D0D668904 /* Pods-Magnet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magnet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Magnet/Pods-Magnet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +118,10 @@
 		613F496D1F9A153A0083CB50 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6181FABB1F9AE3C700F5FE65 /* RuleModel.h */,
+				6181FABC1F9AE3C800F5FE65 /* RuleModel.m */,
+				6181FAB91F9AE10500F5FE65 /* ResultDataModel.h */,
+				6181FAB81F9AE10500F5FE65 /* ResultDataModel.m */,
 				613F497B1F9A30E00083CB50 /* DownHtml.h */,
 				613F497A1F9A30E00083CB50 /* DownHtml.m */,
 				613F496E1F9A155B0083CB50 /* MagnetXNotification.h */,
@@ -119,6 +135,8 @@
 			children = (
 				613F49731F9A227A0083CB50 /* TagsScrollView.h */,
 				613F49721F9A227A0083CB50 /* TagsScrollView.m */,
+				6161E4061F9B1AC400E8851F /* KeywordsTableViewCell.h */,
+				6161E4071F9B1AC400E8851F /* KeywordsTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -126,8 +144,10 @@
 		613F49711F9A21FF0083CB50 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				613F495A1F9A143E0083CB50 /* ViewController.h */,
-				613F495B1F9A143E0083CB50 /* ViewController.m */,
+				613F495A1F9A143E0083CB50 /* MainViewController.h */,
+				613F495B1F9A143E0083CB50 /* MainViewController.m */,
+				6161E4031F9AEB3D00E8851F /* KeywordsViewController.h */,
+				6161E4041F9AEB3D00E8851F /* KeywordsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -264,7 +284,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -274,9 +294,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				613F495C1F9A143E0083CB50 /* ViewController.m in Sources */,
+				6161E4051F9AEB3D00E8851F /* KeywordsViewController.m in Sources */,
+				613F495C1F9A143E0083CB50 /* MainViewController.m in Sources */,
 				613F49741F9A229D0083CB50 /* TagsScrollView.m in Sources */,
 				613F49671F9A143E0083CB50 /* main.m in Sources */,
+				6181FABD1F9AE3C800F5FE65 /* RuleModel.m in Sources */,
+				6161E4081F9B1AC400E8851F /* KeywordsTableViewCell.m in Sources */,
+				6181FABA1F9AE10500F5FE65 /* ResultDataModel.m in Sources */,
 				613F49751F9A229F0083CB50 /* MagnetXNotification.m in Sources */,
 				613F497C1F9A30E00083CB50 /* DownHtml.m in Sources */,
 				613F49591F9A143E0083CB50 /* AppDelegate.m in Sources */,
