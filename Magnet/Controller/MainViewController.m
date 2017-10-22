@@ -14,6 +14,7 @@
 #import "ResultDataModel.h"
 #import "MainViewController.h"
 #import "KeywordsViewController.h"
+#import "URLKeyViewController.h"
 
 @interface MainViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *keyTextField;
@@ -46,12 +47,14 @@
         return;
     }
     
-    NSString *regexString = @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+    NSString *regexString = @"http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexString];
     BOOL isMatch = [pred evaluateWithObject:searchString];
     
     if (isMatch) {
-     
+        URLKeyViewController * urlKeyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"URLKeyViewController"];
+        urlKeyVC.urlString = searchString;
+        [self.navigationController pushViewController:urlKeyVC animated:YES];
     }else{
         
         KeywordsViewController *keyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"KeywordsViewController"];

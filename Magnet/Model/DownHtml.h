@@ -11,6 +11,6 @@
 
 @interface DownHtml : NSObject
 + (DownHtml *)downloader;
-- (void)downloadHtmlURLString:(NSString *)urlString progressBlock:(void(^)(NSProgress * downloadProgress)) progress success:(void(^)(NSData*data)) successHandler failure:(void(^)(NSError *error)) failureHandler;
+- (NSURLSessionDataTask *)downloadHtmlURLString:(NSString *)urlString progressBlock:(void(^)(NSProgress * downloadProgress)) progress success:(void(^)(NSURLSessionDataTask * task,NSData*data)) successHandler failure:(void(^)(NSError *error)) failureHandler;
 
 @end

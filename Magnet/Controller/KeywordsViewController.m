@@ -12,17 +12,21 @@
 #import "KeywordsTableViewCell.h"
 #import "KeywordsViewController.h"
 
-@interface KeywordsViewController ()<TagsScrollViewDelegate>
+@interface KeywordsViewController ()<TagsScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) RuleModel * curRuleModel;
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (nonatomic,strong) NSArray<RuleModel*> * ruleArray;
 @property (nonatomic,strong) NSMutableArray<ResultDataModel*> *listArray;
+@property (nonatomic,strong) TagsScrollView *tagView;
+@property (nonatomic,strong) NSURLSessionDataTask *curTask;
+
 @end
 
 @implementation KeywordsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.keyString;
     self.curRuleModel = self.ruleArray[0];
     [self loadDataForRule:self.curRuleModel];
     self.myTableView.tableFooterView = [UIView new];
@@ -35,12 +39,20 @@
 }
 
 - (void)loadDataForRule:(RuleModel*)model{
+    
+    if (self.curTask) {
+        [self.curTask suspend];
+        self.curTask = nil;
+    }
     NSString*beseURL = [model.source stringByReplacingOccurrencesOfString:@"XXX" withString:self.keyString];
     NSString*url = [beseURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-    [self.listArray removeAllObjects];
-    [[DownHtml downloader]downloadHtmlURLString:url progressBlock:^(NSProgress *downloadProgress) {
+    
+    self.curTask = [[DownHtml downloader]downloadHtmlURLString:url progressBlock:^(NSProgress *downloadProgress) {
         
-    } success:^(NSData *data) {
+    } success:^(NSURLSessionDataTask * task,NSData *data) {
+        if (task != self.curTask) {
+            return ;
+        }
         [self.listArray removeAllObjects];
         [self.listArray addObjectsFromArray:[ResultDataModel HTMLDocumentWithData:data ruleModel:model]];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -48,6 +60,8 @@
             
         });
     } failure:^(NSError *error) {
+        
+        NSLog(@"down _ error");
         
     }];
 }
@@ -60,18 +74,12 @@
     return height;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    NSMutableArray *tags = [NSMutableArray array];
-    [self.ruleArray enumerateObjectsUsingBlock:^(RuleModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [tags addObject:obj.site];
-    }];
-    
-    TagsScrollView *tagView = [[TagsScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
-    tagView.TagsDelegate = self;
-    tagView.backgroundColor = [UIColor whiteColor];
-    [tagView loadTagScrollViewButton:tags];
-    return tagView;
-}
 
+    return self.tagView;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 65;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -106,6 +114,21 @@
     [self loadDataForRule:self.curRuleModel];
 }
 #pragma mark - GET
+- (TagsScrollView *)tagView{
+    if (!_tagView) {
+        NSMutableArray *tags = [NSMutableArray array];
+        [self.ruleArray enumerateObjectsUsingBlock:^(RuleModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [tags addObject:obj.site];
+        }];
+        
+        _tagView = [[TagsScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
+        _tagView.TagsDelegate = self;
+        _tagView.backgroundColor = [UIColor whiteColor];
+        [_tagView loadTagScrollViewButton:tags];
+        
+    }
+    return _tagView;
+}
 - (NSMutableArray<ResultDataModel *> *)listArray{
     if (!_listArray) {
         _listArray = [NSMutableArray array];

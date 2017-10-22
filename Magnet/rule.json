@@ -10,26 +10,6 @@
   "source":"http://www.aoyoso.com/search/XXX_ctime_1.html"
   },
   {
-  "site":"Torrent So",
-  "waiting":"0",
-  "group":"//div[@class='bt_list']//a[@class='tableli']",
-  "magnet":".//@href",
-  "name":".//h3",
-  "size":".//em[@class='list_file_size']",
-  "count":".//em[@class='list_file_time']",
-  "source":"https://www.torrentso.com/cn/s/XXX/"
-  },
-  {
-  "site":"爱磁力",
-  "waiting":"0",
-  "group":"//td[@class='x-item']",
-  "magnet":".//a//@href",
-  "name":".//a",
-  "size":".//span[4]//b",
-  "count":".//span[3]//b",
-  "source":"http://icili.org/list/XXX/1"
-  },
-  {
   "site":"磁力吧",
   "waiting":"0",
   "group":"//div[@class='search-item']",
@@ -80,16 +60,6 @@
   "source":"http://www.zhongziso.com/list/XXX/1"
   },
   {
-  "site":"SOBT",
-  "waiting":"0",
-  "group":"//div[@class='search-list col-md-8']//div[@class='search-item']",
-  "magnet":".//a//@href",
-  "name":".//a[@target='_blank']",
-  "size":".//div[@class='item-bar']//span[2]//b",
-  "count":".//div[@class='item-bar']//span[1]//b",
-  "source":"http://www.sobt5.org/q/XXX.html"
-  },
-  {
   "site":"BT岛",
   "waiting":"0",
   "group":"//ul[@class='mlist']//li",
@@ -98,15 +68,5 @@
   "size":".//dt//span[1]",
   "count":".//dt//span[2]",
   "source":"http://www.btdao5.com/list/XXX-s1d-1.html"
-  },
-  {
-  "site":"bt177",
-  "waiting":"0",
-  "group":"//li",
-  "magnet":".//a//@href",
-  "name":".//a",
-  "size":".//span[1]",
-  "count":".//span[2]",
-  "source":"http://www.bt177.net/word/XXX.html"
   }
   ]
