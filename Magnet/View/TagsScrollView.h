@@ -21,6 +21,8 @@
 @property (nonatomic,weak) id<TagsScrollViewDelegate> TagsDelegate;
 @property (nonatomic,strong)NSMutableArray* tagArray;
 
+//- (void)setProgress:(CGFloat)progress;
+
 @end
 
 

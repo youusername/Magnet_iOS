@@ -36,14 +36,21 @@
         [self.layer setShadowOffset:CGSizeMake(0,0)];
         [self.layer setShadowOpacity:0.1f];
         self.progressView = [[UIProgressView alloc]initWithFrame:CGRectZero];
-        self.progressView.progress = 0.0f;
+        self.progressView.progress = 1.0f;
         self.progressView.progressTintColor = [UIColor grayColor];
         self.progressView.trackTintColor = [UIColor redColor];
         
     }
     return self;
 }
-
+- (void)setProgress:(CGFloat)progress{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        self.progressView.progress = progress;
+    });
+        
+    
+}
 - (void)loadTagScrollViewButton:(NSMutableArray*)tagArray{
     self.tagArray = tagArray;
     if (self.selectIndex>=[tagArray count])
@@ -97,7 +104,7 @@
         frame.size.height = 2;
         self.progressView.frame = frame;
     }];
-    self.progressView.progress = 0.5;
+    
     [buttons enumerateObjectsUsingBlock:^(UIButton*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj == button) {
 //            obj.layer.borderColor = [UIColor orangeColor].CGColor;

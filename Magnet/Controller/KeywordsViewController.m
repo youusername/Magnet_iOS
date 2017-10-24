@@ -11,6 +11,7 @@
 #import "TagsScrollView.h"
 #import "KeywordsTableViewCell.h"
 #import "KeywordsViewController.h"
+#import "SVProgressHUD.h"
 
 @interface KeywordsViewController ()<TagsScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) RuleModel * curRuleModel;
@@ -19,6 +20,7 @@
 @property (nonatomic,strong) NSMutableArray<ResultDataModel*> *listArray;
 @property (nonatomic,strong) TagsScrollView *tagView;
 @property (nonatomic,strong) NSURLSessionDataTask *curTask;
+@property (nonatomic,strong) NSMutableDictionary *dataDic;
 
 @end
 
@@ -47,23 +49,41 @@
     NSString*beseURL = [model.source stringByReplacingOccurrencesOfString:@"XXX" withString:self.keyString];
     NSString*url = [beseURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     
-    self.curTask = [[DownHtml downloader]downloadHtmlURLString:url progressBlock:^(NSProgress *downloadProgress) {
-        
-    } success:^(NSURLSessionDataTask * task,NSData *data) {
-        if (task != self.curTask) {
-            return ;
-        }
-        [self.listArray removeAllObjects];
-        [self.listArray addObjectsFromArray:[ResultDataModel HTMLDocumentWithData:data ruleModel:model]];
+    NSString*key = [NSString stringWithFormat:@"%ld",url.hash];
+    
+    if ([self.dataDic objectForKey:key]) {
+        self.listArray = self.dataDic[key];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.myTableView reloadData];
             
         });
-    } failure:^(NSError *error) {
-        
-        NSLog(@"down _ error");
-        
-    }];
+    }else{
+    
+        [SVProgressHUD show];
+        self.curTask = [[DownHtml downloader]downloadHtmlURLString:url progressBlock:^(NSProgress *downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * task,NSData *data) {
+            if (task != self.curTask) {
+                return ;
+            }
+            [SVProgressHUD dismiss];
+            self.listArray = [NSMutableArray arrayWithArray:[ResultDataModel HTMLDocumentWithData:data ruleModel:model]];
+            [self.dataDic setObject:self.listArray forKey:key];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.myTableView reloadData];
+                
+            });
+        } failure:^(NSError *error) {
+            [SVProgressHUD dismiss];
+            NSLog(@"down _ error");
+            
+        }];
+    }
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(nullable UIEvent *)event{
+    [super touchesBegan:touches withEvent:event];
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 
 #pragma mark - TableView
@@ -144,6 +164,14 @@
     }
     return _ruleArray;
 }
+
+- (NSMutableDictionary *)dataDic{
+    if (!_dataDic) {
+        _dataDic = [NSMutableDictionary dictionary];
+    }
+    return _dataDic;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

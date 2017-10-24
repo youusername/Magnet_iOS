@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--磁力搜索-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="MainViewController" sceneMemberID="viewController">
@@ -44,7 +44,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6xL-Ta-2wf">
+                    <navigationItem key="navigationItem" title="磁力搜索" id="6xL-Ta-2wf">
                         <barButtonItem key="backBarButtonItem" title=" " id="YPh-5E-Ieu"/>
                     </navigationItem>
                     <connections>
@@ -66,7 +66,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="egh-if-KyW">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="moreDataCell" id="spd-yN-JGw">
@@ -86,7 +86,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" rowHeight="70" id="34G-dD-6tx" customClass="KeywordsTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="tableCell" rowHeight="70" id="34G-dD-6tx" customClass="KeywordsTableViewCell">
                                         <rect key="frame" x="0.0" y="72" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="34G-dD-6tx" id="CcN-XH-8fJ">
@@ -103,14 +103,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2017-10-18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9b1-WP-84X">
-                                                    <rect key="frame" x="15" y="49" width="104" height="10"/>
+                                                    <rect key="frame" x="17" y="49" width="104" height="10"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="magnet:?xt=urn:btih:4609D8D81DA29F87EFFAE830474220D78E24D1FE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfO-G3-LiO">
-                                                    <rect key="frame" x="15" y="31" width="345" height="13"/>
+                                                    <rect key="frame" x="17" y="31" width="343" height="13"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="13" id="uPH-zf-xY1"/>
                                                     </constraints>
@@ -125,6 +125,16 @@
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击复制" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9M-xH-dtP">
+                                                    <rect key="frame" x="288" y="52" width="72" height="10"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="72" id="Bhm-Pm-ieC"/>
+                                                        <constraint firstAttribute="height" constant="10" id="IZt-c8-57b"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="NfO-G3-LiO" firstAttribute="top" secondItem="l5q-f8-HDq" secondAttribute="bottom" constant="8" id="Bxp-RH-GsK"/>
@@ -132,7 +142,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="NfO-G3-LiO" secondAttribute="trailing" constant="15" id="WhM-0G-Evj"/>
                                                 <constraint firstItem="l5q-f8-HDq" firstAttribute="leading" secondItem="CcN-XH-8fJ" secondAttribute="leading" constant="15" id="bjK-2c-faE"/>
                                                 <constraint firstAttribute="trailing" secondItem="l5q-f8-HDq" secondAttribute="trailing" constant="15" id="dsw-e7-y1r"/>
-                                                <constraint firstItem="NfO-G3-LiO" firstAttribute="leading" secondItem="CcN-XH-8fJ" secondAttribute="leading" constant="15" id="zpX-l8-UEq"/>
+                                                <constraint firstAttribute="bottom" secondItem="S9M-xH-dtP" secondAttribute="bottom" constant="7.5" id="obj-j3-EuA"/>
+                                                <constraint firstAttribute="trailing" secondItem="S9M-xH-dtP" secondAttribute="trailing" constant="15" id="pkl-wD-d1O"/>
+                                                <constraint firstItem="NfO-G3-LiO" firstAttribute="leading" secondItem="CcN-XH-8fJ" secondAttribute="leading" constant="17" id="zpX-l8-UEq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -152,7 +164,7 @@
                         <constraints>
                             <constraint firstItem="egh-if-KyW" firstAttribute="trailing" secondItem="OR5-fb-6n7" secondAttribute="trailing" id="0GY-My-8NI"/>
                             <constraint firstItem="egh-if-KyW" firstAttribute="bottom" secondItem="OR5-fb-6n7" secondAttribute="bottom" id="AMB-Rb-AGj"/>
-                            <constraint firstItem="egh-if-KyW" firstAttribute="top" secondItem="OR5-fb-6n7" secondAttribute="top" id="YOO-bm-n6x"/>
+                            <constraint firstItem="egh-if-KyW" firstAttribute="top" secondItem="OR5-fb-6n7" secondAttribute="top" constant="-64" id="YOO-bm-n6x"/>
                             <constraint firstItem="egh-if-KyW" firstAttribute="leading" secondItem="OR5-fb-6n7" secondAttribute="leading" id="kjA-gr-Gp6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OR5-fb-6n7"/>
