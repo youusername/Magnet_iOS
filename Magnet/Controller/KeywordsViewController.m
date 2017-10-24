@@ -33,6 +33,7 @@
     [self loadDataForRule:self.curRuleModel];
     self.myTableView.tableFooterView = [UIView new];
 }
+
 - (void)initTagsScrollView{
     TagsScrollView *tagView = [[TagsScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
     tagView.backgroundColor = [UIColor whiteColor];
@@ -81,10 +82,7 @@
     }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(nullable UIEvent *)event{
-    [super touchesBegan:touches withEvent:event];
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-}
+
 
 #pragma mark - TableView
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

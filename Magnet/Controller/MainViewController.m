@@ -64,8 +64,10 @@
     }
     
 }
-
-
+- (void)touchesBegan:(NSSet *)touches withEvent:(nullable UIEvent *)event{
+    [super touchesBegan:touches withEvent:event];
+     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+}
 #pragma mark - WKNavigationDelegate
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
