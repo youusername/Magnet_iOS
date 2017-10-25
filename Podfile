@@ -6,6 +6,7 @@ target 'Magnet' do
   use_frameworks!
 
   # Pods for Magnet
+  pod 'HJTabViewController'
   pod 'Ono', :inhibit_warnings => true
   pod 'AFNetworking', :inhibit_warnings => true
   pod 'YYKit', :inhibit_warnings => true

@@ -51,6 +51,7 @@
                         <outlet property="keyTextField" destination="gPX-RY-map" id="sPm-CI-CDa"/>
                         <segue destination="1c2-yd-X4R" kind="push" id="GJY-9S-6E5"/>
                         <segue destination="gXk-7O-dX0" kind="push" id="gYM-JG-m59"/>
+                        <segue destination="fsH-nT-d4Y" kind="push" id="HOF-6h-RQH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -66,7 +67,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="egh-if-KyW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="moreDataCell" id="spd-yN-JGw">
@@ -164,7 +165,7 @@
                         <constraints>
                             <constraint firstItem="egh-if-KyW" firstAttribute="trailing" secondItem="OR5-fb-6n7" secondAttribute="trailing" id="0GY-My-8NI"/>
                             <constraint firstItem="egh-if-KyW" firstAttribute="bottom" secondItem="OR5-fb-6n7" secondAttribute="bottom" id="AMB-Rb-AGj"/>
-                            <constraint firstItem="egh-if-KyW" firstAttribute="top" secondItem="OR5-fb-6n7" secondAttribute="top" constant="-64" id="YOO-bm-n6x"/>
+                            <constraint firstItem="egh-if-KyW" firstAttribute="top" secondItem="OR5-fb-6n7" secondAttribute="top" id="YOO-bm-n6x"/>
                             <constraint firstItem="egh-if-KyW" firstAttribute="leading" secondItem="OR5-fb-6n7" secondAttribute="leading" id="kjA-gr-Gp6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OR5-fb-6n7"/>
@@ -177,6 +178,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGj-cY-9z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1172" y="132.68365817091455"/>
+        </scene>
+        <!--Bar Tab View Controller-->
+        <scene sceneID="ebR-M3-ZR7">
+            <objects>
+                <viewController storyboardIdentifier="BarTabViewController" id="fsH-nT-d4Y" customClass="BarTabViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YyS-ER-ed8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="sl4-21-SP1"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZZY-1b-nWO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A0J-5B-IgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1700" y="242"/>
         </scene>
         <!--URL Key View Controller-->
         <scene sceneID="Pcj-3c-OPA">

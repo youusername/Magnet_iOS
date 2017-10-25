@@ -10,11 +10,11 @@
 #import "DownHtml.h"
 #import "RuleModel.h"
 #import <WebKit/WebKit.h>
-
 #import "ResultDataModel.h"
 #import "MainViewController.h"
-#import "KeywordsViewController.h"
 #import "URLKeyViewController.h"
+#import "BarTabViewController.h"
+#import "KeywordsViewController.h"
 
 @interface MainViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *keyTextField;
@@ -56,10 +56,13 @@
         urlKeyVC.urlString = searchString;
         [self.navigationController pushViewController:urlKeyVC animated:YES];
     }else{
+        BarTabViewController *barTabVC = [self.storyboard instantiateViewControllerWithIdentifier:@"BarTabViewController"];
+        barTabVC.keyString = searchString;
+        [self.navigationController pushViewController:barTabVC animated:YES];
         
-        KeywordsViewController *keyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"KeywordsViewController"];
-        keyVC.keyString = searchString;
-        [self.navigationController pushViewController:keyVC animated:YES];
+//        KeywordsViewController *keyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"KeywordsViewController"];
+//        keyVC.keyString = searchString;
+//        [self.navigationController pushViewController:keyVC animated:YES];
         
     }
     

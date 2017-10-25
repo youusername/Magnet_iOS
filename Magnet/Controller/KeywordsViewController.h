@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface KeywordsViewController : UIViewController
+
+@property (nonatomic,strong) RuleModel * curRuleModel;
 @property (nonatomic ,strong) NSString * keyString;
+
 @end

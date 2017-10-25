@@ -8,37 +8,32 @@
 #import "YYKit.h"
 #import "DownHtml.h"
 #import "RuleModel.h"
-#import "TagsScrollView.h"
 #import "KeywordsTableViewCell.h"
 #import "KeywordsViewController.h"
 #import "SVProgressHUD.h"
+#import "CommonMacro.h"
 
-@interface KeywordsViewController ()<TagsScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic,strong) RuleModel * curRuleModel;
+@interface KeywordsViewController ()<UITableViewDelegate,UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
-@property (nonatomic,strong) NSArray<RuleModel*> * ruleArray;
+
 @property (nonatomic,strong) NSMutableArray<ResultDataModel*> *listArray;
-@property (nonatomic,strong) TagsScrollView *tagView;
 @property (nonatomic,strong) NSURLSessionDataTask *curTask;
 @property (nonatomic,strong) NSMutableDictionary *dataDic;
-
+@property (nonatomic,assign) NSInteger onePageCount;
+@property (nonatomic,assign) NSInteger moreCount;
 @end
 
 @implementation KeywordsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.keyString;
-    self.curRuleModel = self.ruleArray[0];
+
+    self.onePageCount = 0;
+    self.moreCount  = 1;
     [self loadDataForRule:self.curRuleModel];
     self.myTableView.tableFooterView = [UIView new];
-}
-
-- (void)initTagsScrollView{
-    TagsScrollView *tagView = [[TagsScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
-    tagView.backgroundColor = [UIColor whiteColor];
-    [tagView loadTagScrollViewButton:@[@"asd",@"dsdw",@"fdwg",@"ferb",@"ebr",@"asd",@"dsdw",@"fdwg",@"ferb",@"ebr"]];
-    [self.view addSubview:tagView];
+    
 }
 
 - (void)loadDataForRule:(RuleModel*)model{
@@ -61,17 +56,28 @@
     }else{
     
         [SVProgressHUD show];
+        @WEAKSELF(self);
         self.curTask = [[DownHtml downloader]downloadHtmlURLString:url progressBlock:^(NSProgress *downloadProgress) {
             
         } success:^(NSURLSessionDataTask * task,NSData *data) {
-            if (task != self.curTask) {
+            if (task != selfWeak.curTask) {
                 return ;
             }
             [SVProgressHUD dismiss];
-            self.listArray = [NSMutableArray arrayWithArray:[ResultDataModel HTMLDocumentWithData:data ruleModel:model]];
-            [self.dataDic setObject:self.listArray forKey:key];
+            NSArray * array = [ResultDataModel HTMLDocumentWithData:data ruleModel:model];
+            [selfWeak.listArray addObjectsFromArray:array];
+            if (selfWeak.onePageCount == 0) {
+                selfWeak.onePageCount = array.count;
+            }else{
+                if (array.count == selfWeak.onePageCount) {
+                    selfWeak.moreCount = 1;
+                }else{
+                    selfWeak.moreCount = 0;
+                }
+            }
+            [selfWeak.dataDic setObject:selfWeak.listArray forKey:key];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.myTableView reloadData];
+                [selfWeak.myTableView reloadData];
                 
             });
         } failure:^(NSError *error) {
@@ -85,82 +91,56 @@
 
 
 #pragma mark - TableView
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    CGFloat height = 40;
-    
-    return height;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
-    return self.tagView;
-}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == self.listArray.count && self.listArray.count != 0) {
+        return 48;
+    }
     return 65;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.listArray.count;
+    return self.listArray.count + self.moreCount;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *reuseIdentifier = @"tableCell";
-
-    KeywordsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (indexPath.row == self.listArray.count && self.listArray.count != 0) {
+        reuseIdentifier = @"moreDataCell";
+    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell)
     {
-        
         cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     }
-
-    cell.model = self.listArray[indexPath.row];
+    if ([reuseIdentifier isEqualToString:@"tableCell"]&& self.listArray.count != 0) {
+        KeywordsTableViewCell *table_cell = (KeywordsTableViewCell *)cell;
+        table_cell.model = self.listArray[indexPath.row];
+    }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    ResultDataModel * result = self.listArray[indexPath.row];
-    UIPasteboard*pasteboard = [UIPasteboard generalPasteboard];
-    [pasteboard setString:result.magnet];
+      if (indexPath.row == self.listArray.count && self.listArray.count != 0) {
+          
+      }else{
+          ResultDataModel * result = self.listArray[indexPath.row];
+          UIPasteboard*pasteboard = [UIPasteboard generalPasteboard];
+          [pasteboard setString:result.magnet];
+          [SVProgressHUD showSuccessWithStatus:@"复制成功!"];
+      }
 }
-#pragma mark - TagsScrollView Delegate
--(void)TagsScrollView:(TagsScrollView*)TagsScrollView didSelectTag:(NSInteger)index TagTitle:(NSString*)title{
-    self.curRuleModel = self.ruleArray[index];
 
-    [self loadDataForRule:self.curRuleModel];
-}
 #pragma mark - GET
-- (TagsScrollView *)tagView{
-    if (!_tagView) {
-        NSMutableArray *tags = [NSMutableArray array];
-        [self.ruleArray enumerateObjectsUsingBlock:^(RuleModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [tags addObject:obj.site];
-        }];
-        
-        _tagView = [[TagsScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
-        _tagView.TagsDelegate = self;
-        _tagView.backgroundColor = [UIColor whiteColor];
-        [_tagView loadTagScrollViewButton:tags];
-        
-    }
-    return _tagView;
-}
+
 - (NSMutableArray<ResultDataModel *> *)listArray{
     if (!_listArray) {
         _listArray = [NSMutableArray array];
     }
     return _listArray;
-}
-- (NSArray<RuleModel *> *)ruleArray{
-    if (!_ruleArray) {
-        NSString * jsonPath = [[NSBundle mainBundle] pathForResource:@"rule" ofType:@"json"];
-        NSData * jsonData = [NSData dataWithContentsOfFile:jsonPath];
-        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
-        _ruleArray = [NSArray modelArrayWithClass:[RuleModel class] json:dic];
-    }
-    return _ruleArray;
 }
 
 - (NSMutableDictionary *)dataDic{
@@ -174,6 +154,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)dealloc{
+    NSLog(@"KeywordsViewController dealloc");
+}
 
 @end
