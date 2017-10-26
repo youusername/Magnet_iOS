@@ -15,7 +15,7 @@
 #import "KeywordsViewController.h"
 #import "SVProgressHUD.h"
 #import "HJTabViewControllerPlugin_TabViewBar.h"
-#import "HJDefaultTabViewBar.h"
+
 
 @interface BarTabViewController () <HJTabViewControllerDataSource, HJTabViewControllerDelagate,TagsScrollViewDelegate>
 @property (nonatomic,strong) NSArray<RuleModel*> * ruleArray;

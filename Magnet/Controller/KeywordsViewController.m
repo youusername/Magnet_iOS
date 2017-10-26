@@ -12,6 +12,7 @@
 #import "KeywordsViewController.h"
 #import "SVProgressHUD.h"
 #import "CommonMacro.h"
+#import "MJRefresh.h"
 
 @interface KeywordsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -20,8 +21,9 @@
 @property (nonatomic,strong) NSMutableArray<ResultDataModel*> *listArray;
 @property (nonatomic,strong) NSURLSessionDataTask *curTask;
 @property (nonatomic,strong) NSMutableDictionary *dataDic;
-@property (nonatomic,assign) NSInteger onePageCount;
-@property (nonatomic,assign) NSInteger moreCount;
+//@property (nonatomic,assign) NSInteger onePageCount;
+//@property (nonatomic,assign) NSInteger moreCount;
+@property (nonatomic,assign) NSInteger page;
 @end
 
 @implementation KeywordsViewController
@@ -29,11 +31,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.onePageCount = 0;
-    self.moreCount  = 1;
+//    self.onePageCount = 0;
+//    self.moreCount  = 1;
+    self.page = 1;
     [self loadDataForRule:self.curRuleModel];
     self.myTableView.tableFooterView = [UIView new];
-    
+    [self initRefresh];
+}
+
+
+- (void)initRefresh{
+    self.myTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        self.page +=1;
+        [self loadDataForRule:self.curRuleModel];
+    }];
 }
 
 - (void)loadDataForRule:(RuleModel*)model{
@@ -43,6 +54,7 @@
         self.curTask = nil;
     }
     NSString*beseURL = [model.source stringByReplacingOccurrencesOfString:@"XXX" withString:self.keyString];
+    beseURL = [beseURL stringByReplacingOccurrencesOfString:@"PPP" withString:[NSString stringWithFormat:@"%ld",self.page]];
     NSString*url = [beseURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     
     NSString*key = [NSString stringWithFormat:@"%ld",url.hash];
@@ -66,17 +78,12 @@
             [SVProgressHUD dismiss];
             NSArray * array = [ResultDataModel HTMLDocumentWithData:data ruleModel:model];
             [selfWeak.listArray addObjectsFromArray:array];
-            if (selfWeak.onePageCount == 0) {
-                selfWeak.onePageCount = array.count;
-            }else{
-                if (array.count == selfWeak.onePageCount) {
-                    selfWeak.moreCount = 1;
-                }else{
-                    selfWeak.moreCount = 0;
-                }
-            }
             [selfWeak.dataDic setObject:selfWeak.listArray forKey:key];
+            [selfWeak.myTableView.mj_footer endRefreshing];
             dispatch_async(dispatch_get_main_queue(), ^{
+                if (array.count == 0) {
+                    selfWeak.myTableView.mj_footer.hidden = YES;
+                }
                 [selfWeak.myTableView reloadData];
                 
             });
@@ -102,7 +109,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.listArray.count + self.moreCount;
+    return self.listArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *reuseIdentifier = @"tableCell";

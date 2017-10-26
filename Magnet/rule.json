@@ -7,7 +7,7 @@
   "name":".//a",
   "size":".//table//tr//td[2]",
   "count":".//table//tr//td[1]",
-  "source":"http://www.aoyoso.com/search/XXX_ctime_1.html"
+  "source":"http://www.aoyoso.com/search/XXX_ctime_PPP.html"
   },
   {
   "site":"磁力吧",
@@ -17,7 +17,7 @@
   "name":".//a",
   "size":".//span[3]//b",
   "count":".//span[2]//b",
-  "source":"http://www.ciliba.org/s/XXX.html"
+  "source":"http://www.ciliba.org/s/XXX_rel_PPP.html"
   },
   {
   "site":"BT云搜",
@@ -27,17 +27,17 @@
   "name":".//a",
   "size":".//div[@class='media-more']//span[2]",
   "count":".//div[@class='media-more']//span[1]",
-  "source":"http://www.btyunsou.com/search/XXX_ctime_1.html"
+  "source":"http://www.btyunsou.com/search/XXX_ctime_PPP.html"
   },
   {
   "site":"磁力猪",
   "waiting":"0",
   "group":"//div[@class='row']",
-  "magnet":".//a//@href",
+  "magnet":".//div//a//@href",
   "name":".//a",
   "size":".//div[@class='col-sm-2 col-lg-1 hidden-xs text-right size']",
   "count":".//div[@class='col-sm-2 col-lg-2 hidden-xs text-right date']",
-  "source":"http://www.clpig.com/torrent/XXX.html"
+  "source":"http://www.clpig.com/torrent/XXX_PPP.html"
   },
   {
   "site":"cililian.me",
@@ -47,7 +47,7 @@
   "name":".//a",
   "size":".//dl[@class='BotInfo']//dt/span[1]",
   "count":".//dl[@class='BotInfo']//dt/span[2]",
-  "source":"http://cililian.me/list/XXX/1.html"
+  "source":"http://cililian.me/list/XXX/PPP.html"
   },
   {
   "site":"种子搜",
@@ -57,7 +57,7 @@
   "name":".//tbody//a",
   "size":".//tbody//tr//td[2]//strong",
   "count":".//tbody//tr//td[1]//strong",
-  "source":"http://www.zhongziso.com/list/XXX/1"
+  "source":"http://www.zhongziso.com/list/XXX/PPP"
   },
   {
   "site":"BT岛",
@@ -67,6 +67,6 @@
   "name":".//a[@target='_blank']",
   "size":".//dt//span[1]",
   "count":".//dt//span[2]",
-  "source":"http://www.btdao5.com/list/XXX-s1d-1.html"
+  "source":"http://www.btdao5.com/list/XXX-s1d-PPP.html"
   }
   ]

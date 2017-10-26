@@ -48,7 +48,7 @@
 //==========================================================================================
 
 + (ResultDataModel*)entity:(ONOXMLElement *)element ruleModel:(RuleModel*)model{
-    ResultDataModel*Model = [ResultDataModel new];
+    ResultDataModel*R_model = [ResultDataModel new];
     NSString*firstMagnet = [element firstChildWithXPath:model.magnet].stringValue;
     if ([firstMagnet hasSuffix:@".html"]) {
         firstMagnet = [firstMagnet stringByReplacingOccurrencesOfString:@".html"withString:@""];
@@ -56,13 +56,16 @@
     if ([firstMagnet componentsSeparatedByString:@"&"].count>1) {
         firstMagnet = [firstMagnet componentsSeparatedByString:@"&"][0];
     }
-    NSString*magnet=[firstMagnet substringWithRange:NSMakeRange(firstMagnet.length-40,40)];
-    Model.magnet = [NSString stringWithFormat:@"magnet:?xt=urn:btih:%@",magnet];
-    Model.name = [[element firstChildWithXPath:model.name] stringValue];
-    Model.size = [[element firstChildWithXPath:model.size] stringValue];
-    Model.count = [[element firstChildWithXPath:model.count] stringValue];
-    Model.source =model.site;
-    return Model;
+    NSString*magnet = @"";
+    if (magnet.length>40) {
+        magnet=[firstMagnet substringWithRange:NSMakeRange(firstMagnet.length-40,40)];
+    }
+    R_model.magnet = [NSString stringWithFormat:@"magnet:?xt=urn:btih:%@",magnet];
+    R_model.name    = [[element firstChildWithXPath:model.name] stringValue];
+    R_model.size    = [[element firstChildWithXPath:model.size] stringValue];
+    R_model.count   = [[element firstChildWithXPath:model.count] stringValue];
+    R_model.source  = model.site;
+    return R_model;
 }
 
 + (NSArray*)HTMLDocumentWithData:(NSData*)data ruleModel:(RuleModel*)model{
