@@ -12,4 +12,5 @@ target 'Magnet' do
   pod 'AFNetworking', :inhibit_warnings => true
   pod 'YYKit', :inhibit_warnings => true
   pod 'SVProgressHUD', :inhibit_warnings => true
+  pod 'CAPopUpViewController'
 end

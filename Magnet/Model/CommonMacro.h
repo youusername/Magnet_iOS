@@ -1,5 +1,8 @@
 
 
+#define kAppDidBecomeActiveNotification  @"appDidBecomeActive"
+
+
 //当前版本号
 #define KBundleShortVersionString [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define KFBundleVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]

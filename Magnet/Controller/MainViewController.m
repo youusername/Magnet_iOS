@@ -9,15 +9,17 @@
 #import "YYKit.h"
 #import "DownHtml.h"
 #import "RuleModel.h"
+#import "CommonMacro.h"
 #import <WebKit/WebKit.h>
 #import "ResultDataModel.h"
 #import "MainViewController.h"
 #import "URLKeyViewController.h"
 #import "BarTabViewController.h"
+#import "CAPopUpViewController.h"
 #import "KeywordsViewController.h"
-
 @interface MainViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *keyTextField;
+
 
 
 
@@ -29,16 +31,69 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
- 
+    [self willPasteboard];
+    [self initNotification];
 }
 
 #pragma mark - init
 
+- (void)initNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(willPasteboard)
+                                                 name:kAppDidBecomeActiveNotification
+                                               object:nil];
+}
 
+- (void)willPasteboard{
+    
+    if (!self || self.navigationController.topViewController!=self) {
+        return;
+    }
+    
+    UIPasteboard*pasteboard = [UIPasteboard generalPasteboard];
+    if (pasteboard.URL) {
+        [self popPasteboardMenu:@[pasteboard.URL.absoluteString]];
+    }else if (pasteboard.string){
+        [self popPasteboardMenu:@[pasteboard.string]];
+    }
+
+}
+
+- (void)popPasteboardMenu:(NSArray*)op{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CAPopUpViewController *popup = [[CAPopUpViewController alloc] init];
+        popup.itemsArray = op;
+        popup.sourceView = self.keyTextField;
+        popup.backgroundColor = [UIColor whiteColor];
+        popup.backgroundImage = nil;
+        popup.itemTitleColor = [UIColor blackColor];
+        popup.itemSelectionColor = [UIColor lightGrayColor];
+        popup.arrowDirections = UIPopoverArrowDirectionAny;
+        popup.arrowColor = [UIColor whiteColor];
+        @WEAKSELF(self);
+        [popup setPopCellBlock:^(CAPopUpViewController *popupVC, UITableViewCell *popupCell, NSInteger row, NSInteger section) {
+            selfWeak.keyTextField.text = op[row];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [popupVC dismissViewControllerAnimated:YES completion:^{
+                    [selfWeak beginAction:nil];
+                    
+                }];
+            });
+
+        }];
+        
+        [self presentViewController:popup animated:YES completion:^{
+            
+        }];
+        
+    });
+}
 
 
 
 - (IBAction)beginAction:(id)sender {
+
     
     NSString *searchString = self.keyTextField.text;
     

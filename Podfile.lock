@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - CAPopUpViewController (1.1)
   - HJTabViewController (1.0.4)
   - MJRefresh (3.1.14)
   - Ono (1.2.2)
@@ -24,6 +25,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - CAPopUpViewController
   - HJTabViewController
   - MJRefresh
   - Ono
@@ -32,12 +34,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  CAPopUpViewController: 1bc1e5dffc9dbc65db68ba0dd3795259c3a9f3c1
   HJTabViewController: 5b9edf2a4612315b1ed293713246885c3a7f27ca
   MJRefresh: 6642e35b3227a5447b9fd5e17c552c90196c9859
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
   SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: b97d52c1991ca7d57f10ec9fa4f85e16a8df8118
+PODFILE CHECKSUM: 29f47956500a00786209b6c32bb0eb92883c2581
 
 COCOAPODS: 1.3.1
