@@ -1,5 +1,16 @@
  [
   {
+  "site":"种子搜",
+  "certificates":"39fcefade0a6b2ab9c1d8209d311d6ce.crt",
+  "waiting":"0",
+  "group":"//ul[@class='list-group']",
+  "magnet":".//li[@class='list-group-item code text-left']//dl[@class='down']//a//@href",
+  "name":".//li[1]",
+  "size":"./li[@class='list-group-item code text-left']/dl[@class='list-code']/dd[@class='text-size']",
+  "count":"./li[@class='list-group-item code text-left']/dl[@class='list-code']/dd[@class='text-time']",
+  "source":"https://www.zhongziso.com/list/XXX/PPP"
+  },
+  {
   "site":"AOYOSO",
   "waiting":"0",
   "group":"//div[@class='col-md-8']//div[@class='panel panel-default']",
@@ -48,16 +59,6 @@
   "size":".//dl[@class='BotInfo']//dt/span[1]",
   "count":".//dl[@class='BotInfo']//dt/span[2]",
   "source":"http://cililian.me/list/XXX/PPP.html"
-  },
-  {
-  "site":"种子搜",
-  "waiting":"0",
-  "group":"//table[@class='table table-bordered table-striped']",
-  "magnet":".//a//@href",
-  "name":".//tbody//a",
-  "size":".//tbody//tr//td[2]//strong",
-  "count":".//tbody//tr//td[1]//strong",
-  "source":"http://www.zhongziso.com/list/XXX/PPP"
   },
   {
   "site":"BT岛",

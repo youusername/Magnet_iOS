@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		119339B6DB5D4BE4F69E2395 /* Pods_Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6ED82452B5B14F29A1AA60 /* Pods_Magnet.framework */; };
+		6118A3D91FA3917D00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt in Resources */ = {isa = PBXBuildFile; fileRef = 6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */; };
 		612E57C71F9C933E0023341E /* URLKeyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E57C61F9C933E0023341E /* URLKeyModel.m */; };
 		613F49591F9A143E0083CB50 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F49581F9A143E0083CB50 /* AppDelegate.m */; };
 		613F495C1F9A143E0083CB50 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F495B1F9A143E0083CB50 /* MainViewController.m */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		4C6ED82452B5B14F29A1AA60 /* Pods_Magnet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magnet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */ = {isa = PBXFileReference; lastKnownFileType = file; path = 39fcefade0a6b2ab9c1d8209d311d6ce.crt; sourceTree = "<group>"; };
 		612E57C51F9C933E0023341E /* URLKeyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLKeyModel.h; sourceTree = "<group>"; };
 		612E57C61F9C933E0023341E /* URLKeyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLKeyModel.m; sourceTree = "<group>"; };
 		613F49541F9A143E0083CB50 /* Magnet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Magnet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6118A3D71FA3903C00409599 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		613F494B1F9A143E0083CB50 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 				613F49621F9A143E0083CB50 /* LaunchScreen.storyboard */,
 				613F49651F9A143E0083CB50 /* Info.plist */,
 				613F49761F9A2F450083CB50 /* rule.json */,
+				6118A3D71FA3903C00409599 /* Other */,
 				613F49661F9A143E0083CB50 /* main.m */,
 			);
 			path = Magnet;
@@ -247,6 +258,7 @@
 			files = (
 				613F49641F9A143E0083CB50 /* LaunchScreen.storyboard in Resources */,
 				613F49771F9A2F4F0083CB50 /* rule.json in Resources */,
+				6118A3D91FA3917D00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt in Resources */,
 				613F49611F9A143E0083CB50 /* Assets.xcassets in Resources */,
 				613F495F1F9A143E0083CB50 /* Main.storyboard in Resources */,
 			);

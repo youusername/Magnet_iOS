@@ -69,7 +69,7 @@
     
         [SVProgressHUD show];
         @WEAKSELF(self);
-        self.curTask = [[DownHtml downloader]downloadHtmlURLString:url progressBlock:^(NSProgress *downloadProgress) {
+        self.curTask = [[DownHtml downloader]downloadHtmlURLString:url certificatesName:model.certificates progressBlock:^(NSProgress *downloadProgress) {
             
         } success:^(NSURLSessionDataTask * task,NSData *data) {
             if (task != selfWeak.curTask) {

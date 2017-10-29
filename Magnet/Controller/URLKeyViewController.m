@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[DownHtml downloader]downloadHtmlURLString:self.urlString progressBlock:^(NSProgress *downloadProgress) {
+    [[DownHtml downloader]downloadHtmlURLString:self.urlString certificatesName:nil progressBlock:^(NSProgress *downloadProgress) {
         
     } success:^(NSURLSessionDataTask *task, NSData *data) {
         [self.listArray addObjectsFromArray:[self resultAnalysis:data]];

@@ -70,12 +70,18 @@
 
 + (NSArray*)HTMLDocumentWithData:(NSData*)data ruleModel:(RuleModel*)model{
     NSMutableArray*array = [NSMutableArray new];
-    ONOXMLDocument *doc = [ONOXMLDocument HTMLDocumentWithData:data error:nil];
-    [doc enumerateElementsWithXPath:model.group usingBlock:^(ONOXMLElement *element, NSUInteger idx, BOOL *stop) {
-        ResultDataModel*dataModel = [ResultDataModel entity:element ruleModel:model];
-//        movie.source = url;
-        [array addObject:dataModel];
-    }];
+    NSError *error;
+    ONOXMLDocument *doc = [ONOXMLDocument HTMLDocumentWithData:data error:&error];
+    
+    if (!error) {
+        [doc enumerateElementsWithXPath:model.group usingBlock:^(ONOXMLElement *element, NSUInteger idx, BOOL *stop) {
+            ResultDataModel*dataModel = [ResultDataModel entity:element ruleModel:model];
+            //        movie.source = url;
+            [array addObject:dataModel];
+        }];
+    }else{
+        NSLog(@"HTMLDocumentWithData - %@",error);
+    }
     return array;
 }
 

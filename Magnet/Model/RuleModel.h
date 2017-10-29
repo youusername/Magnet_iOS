@@ -10,6 +10,7 @@
 
 @interface RuleModel : NSObject
 @property (nonatomic,strong)NSString* site;
+@property (nonatomic,strong)NSString* certificates;
 @property (nonatomic,strong)NSString* waiting;
 @property (nonatomic,strong)NSString* group;
 @property (nonatomic,strong)NSString* name;

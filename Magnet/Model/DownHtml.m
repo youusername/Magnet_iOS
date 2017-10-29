@@ -19,7 +19,7 @@
     });
     return downHtml;
 }
-- (NSURLSessionDataTask *)downloadHtmlURLString:(NSString *)urlString progressBlock:(void(^)(NSProgress * downloadProgress)) progress success:(void(^)(NSURLSessionDataTask * _Nonnull task,NSData*data)) successHandler failure:(void(^)(NSError *error)) failureHandler{
+- (NSURLSessionDataTask *)downloadHtmlURLString:(NSString *)urlString certificatesName:(NSString*)certificates progressBlock:(void(^)(NSProgress * downloadProgress)) progress success:(void(^)(NSURLSessionDataTask * _Nonnull task,NSData*data)) successHandler failure:(void(^)(NSError *error)) failureHandler{
 //    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 //    NSURLSession * session = [NSURLSession sharedSession];
 //    NSURLSessionDataTask * dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -39,7 +39,12 @@
 //    [dataTask resume];
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    if (certificates && ![certificates isEqualToString:@""]) {
+        
+        manager.securityPolicy=[DownHtml policy:certificates];
+    }
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", @"text/json", nil];
     manager.requestSerializer.timeoutInterval = 5;
     return [manager GET:urlString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -61,5 +66,21 @@
     }];
 }
 
++ (AFSecurityPolicy *)policy:(NSString*)certificates{
+    NSArray *cerArray = [certificates componentsSeparatedByString:@"."];
+    //根证书路径
+    NSString * path = [[NSBundle mainBundle] pathForResource:cerArray[0] ofType:cerArray[1]];
+    //
+    NSData * cerData = [NSData dataWithContentsOfFile:path];
+    //
+    NSSet * dataSet = [NSSet setWithObject:cerData];
+    //AFNetworking验证证书的object,AFSSLPinningModeCertificate参数决定了验证证书的方式
+    AFSecurityPolicy * policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate withPinnedCertificates:dataSet];
+    //是否可以使用自建证书（不花钱的）
+    policy.allowInvalidCertificates=YES;
+    //是否验证域名（一般不验证）
+    policy.validatesDomainName=NO;
+    return policy;
+}
 
 @end
