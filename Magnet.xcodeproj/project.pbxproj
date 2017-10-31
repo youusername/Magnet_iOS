@@ -29,6 +29,9 @@
 		6181FABD1F9AE3C800F5FE65 /* RuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6181FABC1F9AE3C800F5FE65 /* RuleModel.m */; };
 		61A4934A1FA0B9A400A1F87F /* BarTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A493491FA0B9A400A1F87F /* BarTabViewController.m */; };
 		61A4934F1FA0C71B00A1F87F /* CommonMacro.h in Sources */ = {isa = PBXBuildFile; fileRef = 61A4934E1FA0C6D000A1F87F /* CommonMacro.h */; };
+		61C29DDC1FA89D7900118B43 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C29DDB1FA89D7900118B43 /* SettingTableViewController.m */; };
+		61C29DDF1FA8A1A600118B43 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C29DDE1FA8A1A600118B43 /* UserInfoModel.m */; };
+		61C29DE21FA8AA6000118B43 /* SearchLogsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C29DE11FA8AA6000118B43 /* SearchLogsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +72,12 @@
 		61A493481FA0B9A400A1F87F /* BarTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarTabViewController.h; sourceTree = "<group>"; };
 		61A493491FA0B9A400A1F87F /* BarTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarTabViewController.m; sourceTree = "<group>"; };
 		61A4934E1FA0C6D000A1F87F /* CommonMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacro.h; sourceTree = "<group>"; };
+		61C29DDA1FA89D7900118B43 /* SettingTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
+		61C29DDB1FA89D7900118B43 /* SettingTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
+		61C29DDD1FA8A1A600118B43 /* UserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
+		61C29DDE1FA8A1A600118B43 /* UserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		61C29DE01FA8AA6000118B43 /* SearchLogsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchLogsTableViewController.h; sourceTree = "<group>"; };
+		61C29DE11FA8AA6000118B43 /* SearchLogsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchLogsTableViewController.m; sourceTree = "<group>"; };
 		803F1DECBE90BF38C12CB897 /* Pods-Magnet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magnet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Magnet/Pods-Magnet.release.xcconfig"; sourceTree = "<group>"; };
 		B25187C76E21EE0D0D668904 /* Pods-Magnet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magnet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Magnet/Pods-Magnet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +162,8 @@
 				613F496F1F9A155B0083CB50 /* MagnetXNotification.m */,
 				612E57C51F9C933E0023341E /* URLKeyModel.h */,
 				612E57C61F9C933E0023341E /* URLKeyModel.m */,
+				61C29DDD1FA8A1A600118B43 /* UserInfoModel.h */,
+				61C29DDE1FA8A1A600118B43 /* UserInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,6 +193,10 @@
 				6161E4041F9AEB3D00E8851F /* KeywordsViewController.m */,
 				6161E4091F9C6A8700E8851F /* URLKeyViewController.h */,
 				6161E40A1F9C6A8700E8851F /* URLKeyViewController.m */,
+				61C29DDA1FA89D7900118B43 /* SettingTableViewController.h */,
+				61C29DDB1FA89D7900118B43 /* SettingTableViewController.m */,
+				61C29DE01FA8AA6000118B43 /* SearchLogsTableViewController.h */,
+				61C29DE11FA8AA6000118B43 /* SearchLogsTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -347,8 +362,11 @@
 				613F49671F9A143E0083CB50 /* main.m in Sources */,
 				6181FABD1F9AE3C800F5FE65 /* RuleModel.m in Sources */,
 				6161E4081F9B1AC400E8851F /* KeywordsTableViewCell.m in Sources */,
+				61C29DDF1FA8A1A600118B43 /* UserInfoModel.m in Sources */,
 				6181FABA1F9AE10500F5FE65 /* ResultDataModel.m in Sources */,
 				613F49751F9A229F0083CB50 /* MagnetXNotification.m in Sources */,
+				61C29DDC1FA89D7900118B43 /* SettingTableViewController.m in Sources */,
+				61C29DE21FA8AA6000118B43 /* SearchLogsTableViewController.m in Sources */,
 				6161E40B1F9C6A8700E8851F /* URLKeyViewController.m in Sources */,
 				613F497C1F9A30E00083CB50 /* DownHtml.m in Sources */,
 				613F49591F9A143E0083CB50 /* AppDelegate.m in Sources */,

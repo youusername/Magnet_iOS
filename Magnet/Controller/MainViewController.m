@@ -17,10 +17,13 @@
 #import "BarTabViewController.h"
 #import "CAPopUpViewController.h"
 #import "KeywordsViewController.h"
+#import "UserInfoModel.h"
+
+
 @interface MainViewController ()<WKUIDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *keyTextField;
 
-
+@property (nonatomic,strong) UserInfoModel * userInfo;
 
 
 
@@ -114,14 +117,23 @@
         BarTabViewController *barTabVC = [self.storyboard instantiateViewControllerWithIdentifier:@"BarTabViewController"];
         barTabVC.keyString = searchString;
         [self.navigationController pushViewController:barTabVC animated:YES];
-        
-//        KeywordsViewController *keyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"KeywordsViewController"];
-//        keyVC.keyString = searchString;
-//        [self.navigationController pushViewController:keyVC animated:YES];
-        
+
     }
     
+    [self addHistoricalLogs:searchString];
 }
+
+- (void)addHistoricalLogs:(NSString*)str{
+    if (!str) {
+        return;
+    }
+    
+    if (!self.userInfo.isSearchLogs) {
+        [self.userInfo.searchLogsSet addObject:str];
+        [self.userInfo save];
+    }
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(nullable UIEvent *)event{
     [super touchesBegan:touches withEvent:event];
      [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
@@ -155,6 +167,13 @@
     NSString *js = @"document.getElementsByTagName('html')[0].innerHTML";
     return js;
     
+}
+
+- (UserInfoModel *)userInfo{
+    if (!_userInfo) {
+        _userInfo = [UserInfoModel getUserInfoInstance];
+    }
+    return _userInfo;
 }
 
 - (void)didReceiveMemoryWarning {
