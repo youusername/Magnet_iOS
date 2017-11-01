@@ -10,6 +10,83 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--免责声明-->
+        <scene sceneID="2jR-Oj-Hw7">
+            <objects>
+                <viewController storyboardIdentifier="AffirmationViewController" id="vtG-Xy-3vA" customClass="AffirmationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gLb-T7-m03"/>
+                        <viewControllerLayoutGuide type="bottom" id="05O-IE-iBN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XGe-ln-dQa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EVh-cH-uSJ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">《隐私协议和服务条款》
+
+【导言】
+
+欢迎您使用-磁力搜索APP！
+为使用磁力搜索服务，您应当阅读并遵守《磁力搜索使用条款和隐私政策协议》（以下简称“本协议”）。请您务必审慎阅读、充分理解各条款内容，特别是免除或限制责任的相应条款，以及开通或使用某项服务的单独协议，并选择接受或不接受。限制或免除责任条款可能以加粗形式提示您注意。
+除非您已阅读并接受本协议所有条款，否则您无权使用磁力搜索服务（以下简称“本服务”）。您对本服务的登录、查看、发布信息等使用行为即视为您已阅读并同意本协议的约束。
+如果您未满18周岁，请在法定监护人的陪同下阅读本协议，并特别注意未成年人使用条款。
+
+一、【协议的范围】
+
+本协议是您与磁力搜索之间关于您使用磁力搜索服务所订立的协议。
+
+二、【用户行为规范】
+
+［信息内容规范］
+1. 本条所述信息内容是指用户使用本服务过程中所制作、复制、发布、传播 、偷拍的任何内容，包括但不限于磁力搜索功能的视频、图片、用户说明等注册信息及认证资料，或文字、语音、图片、视频、图文等发送、回复或自动回复消息和相关链接页面，以及其他使用本服务所产生的内容。
+2. 您理解并同意，磁力搜索一直致力于为用户提供便利的一款服务应用，您不得利用本服务制作、复制、发布、传播如下干扰磁力搜索 App正常运营，以及侵犯其他用户或第三方合法权益的内容：
+3. 发布、传送、传播、储存违反国家法律法规禁止的内容：
+（1）违反宪法确定的基本原则的；
+（2）危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；
+（3）损害国家荣誉和利益的；
+（4）煽动民族仇恨、民族歧视，破坏民族团结的；
+（5）破坏国家宗教政策，宣扬邪教和封建迷信的；
+（6）散布谣言，扰乱社会秩序，破坏社会稳定的；
+（7）散布淫秽、色情、赌博、暴力、恐怖或者教唆犯罪的；
+（8）侮辱或者诽谤他人，侵害他人合法权益的；
+（9）煽动非法集会、结社、游行、示威、聚众扰乱社会秩序的；
+（10）以非法偷拍或摄像等不正当手段；
+（11）含有法律、行政法规禁止的其他内容的。
+发布、传送、传播、储存侵害他人名誉权、肖像权、知识产权、商业秘密等合法权利的内容；
+涉及他人隐私、个人信息或资料的；
+发布、传送、传播骚扰信息、广告信息及垃圾信息或含有任何性暗示的；
+其他违反法律法规、政策及公序良俗、社会公德或干扰磁力搜索正常运营和侵犯其他用户或第三方合法权益内容的信息。
+
+九、【特别声明】
+
+磁力搜索APP搜索到的内容均来自各大磁力用户分享内容，非用户个人私有或者说隐私内容。本APP(磁力搜索)仅对分享内容做显示，任何涉及 用户登录、分享传播等行为都属于磁力站点，我们承诺不做任何钓鱼，获取私人信息等侵害用户行为。搜索内容最终解释权归原磁力所有。 本APP非人工检索方式，不代表本APP立场，本APP不对其真实合法性负责，亦不承担任何法律责任。
+九、【投诉反馈】
+
+投诉邮箱：386935679@qq.com QQ:386935679
+</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EVh-cH-uSJ" firstAttribute="top" secondItem="gLb-T7-m03" secondAttribute="bottom" id="EVq-Xi-A6B"/>
+                            <constraint firstAttribute="trailing" secondItem="EVh-cH-uSJ" secondAttribute="trailing" id="I83-wL-AWO"/>
+                            <constraint firstItem="05O-IE-iBN" firstAttribute="top" secondItem="EVh-cH-uSJ" secondAttribute="bottom" id="gki-7p-Uh9"/>
+                            <constraint firstItem="EVh-cH-uSJ" firstAttribute="leading" secondItem="XGe-ln-dQa" secondAttribute="leading" id="zbB-yG-O9i"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="免责声明" id="RSR-BL-TpF">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="iwH-he-Zad"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VaU-Xs-VZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="479" y="-1291"/>
+        </scene>
         <!--Setting Table View Controller-->
         <scene sceneID="mCF-t5-eeU">
             <objects>
@@ -163,11 +240,14 @@
                             <outlet property="delegate" destination="aqU-6X-gos" id="gkz-CJ-ppK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="B1V-ZN-f9x"/>
+                    <navigationItem key="navigationItem" id="B1V-ZN-f9x">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="rRh-6Y-ScT"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchSwitch" destination="csn-Ls-UnG" id="MbM-q7-8Jg"/>
                         <outlet property="versionLabel" destination="xOP-PK-KyA" id="Pzl-1e-1pU"/>
                         <segue destination="Czp-U9-Iba" kind="push" id="76d-mn-BCI"/>
+                        <segue destination="vtG-Xy-3vA" kind="push" id="vUJ-zn-Ouc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzV-hT-dEd" userLabel="First Responder" sceneMemberID="firstResponder"/>

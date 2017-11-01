@@ -34,11 +34,14 @@
 //    self.onePageCount = 0;
 //    self.moreCount  = 1;
     self.page = 1;
-    [self loadDataForRule:self.curRuleModel];
     self.myTableView.tableFooterView = [UIView new];
     [self initRefresh];
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [self loadDataForRule:self.curRuleModel];
+}
 
 - (void)initRefresh{
     self.myTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -67,7 +70,10 @@
         });
     }else{
     
-        [SVProgressHUD show];
+        if (self.page ==1) {
+            [SVProgressHUD show];
+        }
+        
         @WEAKSELF(self);
         self.curTask = [[DownHtml downloader]downloadHtmlURLString:url certificatesName:model.certificates progressBlock:^(NSProgress *downloadProgress) {
             
@@ -138,6 +144,10 @@
           UIPasteboard*pasteboard = [UIPasteboard generalPasteboard];
           [pasteboard setString:result.magnet];
           [SVProgressHUD showSuccessWithStatus:@"复制成功!"];
+          
+          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+              [SVProgressHUD dismiss];
+              });
       }
 }
 

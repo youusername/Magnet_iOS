@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UserInfoModel.h"
 @interface SearchLogsTableViewController : UITableViewController
-@property (nonatomic,strong) NSArray *logsArray;
+@property (nonatomic,strong) UserInfoModel * userInfo;
 @end

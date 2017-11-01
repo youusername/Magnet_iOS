@@ -19,14 +19,12 @@
     
     self.tableView.tableFooterView = [UIView new];
 }
-- (void)setLogsArray:(NSArray *)logsArray{
-    if (logsArray) {
-        _logsArray = logsArray;
+- (void)setUserInfo:(UserInfoModel *)userInfo{
+    if (userInfo) {
+        _userInfo = userInfo;
         [self.tableView reloadData];
     }
-    
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -41,7 +39,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.logsArray.count;
+    return self.userInfo.searchLogsSet.allObjects.count;
 }
 
 
@@ -54,7 +52,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     }
     UILabel *label = [cell.contentView viewWithTag:222];
-    label.text = self.logsArray[indexPath.row];
+    label.text = self.userInfo.searchLogsSet.allObjects[indexPath.row];
     return cell;
 }
 
@@ -67,17 +65,20 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+        UILabel *label = [cell.contentView viewWithTag:222];
+        [self.userInfo.searchLogsSet removeObject:label.text];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.

@@ -25,6 +25,8 @@
 		6161E4081F9B1AC400E8851F /* KeywordsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6161E4071F9B1AC400E8851F /* KeywordsTableViewCell.m */; };
 		6161E40B1F9C6A8700E8851F /* URLKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6161E40A1F9C6A8700E8851F /* URLKeyViewController.m */; };
 		6161E40E1F9C74C700E8851F /* URLKeyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6161E40D1F9C74C700E8851F /* URLKeyTableViewCell.m */; };
+		6168F9541FA9F73F00B6083B /* AffirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6168F9531FA9F73F00B6083B /* AffirmationViewController.m */; };
+		6168F9561FA9FA5A00B6083B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6168F9551FA9FA5A00B6083B /* StoreKit.framework */; };
 		6181FABA1F9AE10500F5FE65 /* ResultDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6181FAB81F9AE10500F5FE65 /* ResultDataModel.m */; };
 		6181FABD1F9AE3C800F5FE65 /* RuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6181FABC1F9AE3C800F5FE65 /* RuleModel.m */; };
 		61A4934A1FA0B9A400A1F87F /* BarTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A493491FA0B9A400A1F87F /* BarTabViewController.m */; };
@@ -65,6 +67,9 @@
 		6161E40A1F9C6A8700E8851F /* URLKeyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLKeyViewController.m; sourceTree = "<group>"; };
 		6161E40C1F9C74C700E8851F /* URLKeyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLKeyTableViewCell.h; sourceTree = "<group>"; };
 		6161E40D1F9C74C700E8851F /* URLKeyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLKeyTableViewCell.m; sourceTree = "<group>"; };
+		6168F9521FA9F73F00B6083B /* AffirmationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AffirmationViewController.h; sourceTree = "<group>"; };
+		6168F9531FA9F73F00B6083B /* AffirmationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AffirmationViewController.m; sourceTree = "<group>"; };
+		6168F9551FA9FA5A00B6083B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6181FAB81F9AE10500F5FE65 /* ResultDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultDataModel.m; sourceTree = "<group>"; };
 		6181FAB91F9AE10500F5FE65 /* ResultDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResultDataModel.h; sourceTree = "<group>"; };
 		6181FABB1F9AE3C700F5FE65 /* RuleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleModel.h; sourceTree = "<group>"; };
@@ -87,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6168F9561FA9FA5A00B6083B /* StoreKit.framework in Frameworks */,
 				613F49791F9A2FDF0083CB50 /* MobileCoreServices.framework in Frameworks */,
 				119339B6DB5D4BE4F69E2395 /* Pods_Magnet.framework in Frameworks */,
 			);
@@ -98,6 +104,7 @@
 		211B6452A84574FE9DBB45D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6168F9551FA9FA5A00B6083B /* StoreKit.framework */,
 				613F49781F9A2FDF0083CB50 /* MobileCoreServices.framework */,
 				4C6ED82452B5B14F29A1AA60 /* Pods_Magnet.framework */,
 			);
@@ -193,12 +200,22 @@
 				6161E4041F9AEB3D00E8851F /* KeywordsViewController.m */,
 				6161E4091F9C6A8700E8851F /* URLKeyViewController.h */,
 				6161E40A1F9C6A8700E8851F /* URLKeyViewController.m */,
+				6168F9571FA9FDE100B6083B /* Setting */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6168F9571FA9FDE100B6083B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
 				61C29DDA1FA89D7900118B43 /* SettingTableViewController.h */,
 				61C29DDB1FA89D7900118B43 /* SettingTableViewController.m */,
 				61C29DE01FA8AA6000118B43 /* SearchLogsTableViewController.h */,
 				61C29DE11FA8AA6000118B43 /* SearchLogsTableViewController.m */,
+				6168F9521FA9F73F00B6083B /* AffirmationViewController.h */,
+				6168F9531FA9F73F00B6083B /* AffirmationViewController.m */,
 			);
-			path = Controller;
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		804565537BA70DC106348DB0 /* Pods */ = {
@@ -357,6 +374,7 @@
 				61A4934A1FA0B9A400A1F87F /* BarTabViewController.m in Sources */,
 				612E57C71F9C933E0023341E /* URLKeyModel.m in Sources */,
 				61A4934F1FA0C71B00A1F87F /* CommonMacro.h in Sources */,
+				6168F9541FA9F73F00B6083B /* AffirmationViewController.m in Sources */,
 				613F49741F9A229D0083CB50 /* TagsScrollView.m in Sources */,
 				6161E40E1F9C74C700E8851F /* URLKeyTableViewCell.m in Sources */,
 				613F49671F9A143E0083CB50 /* main.m in Sources */,

@@ -18,6 +18,7 @@
 #import "CAPopUpViewController.h"
 #import "KeywordsViewController.h"
 #import "UserInfoModel.h"
+#import "SVProgressHUD.h"
 
 
 @interface MainViewController ()<WKUIDelegate,WKNavigationDelegate>
@@ -36,6 +37,11 @@
 
     [self willPasteboard];
     [self initNotification];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [SVProgressHUD dismiss];
 }
 
 #pragma mark - init

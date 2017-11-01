@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "CommonMacro.h"
+#import <Bugly/Bugly.h>
+#import "SVProgressHUD.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +19,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+#ifdef RELEASE
+    [Bugly startWithAppId:@"1322e6986d"];
+#endif
+    
+    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    
+    
     return YES;
 }
 

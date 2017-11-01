@@ -6,6 +6,7 @@ target 'Magnet' do
   use_frameworks!
 
   # Pods for Magnet
+  pod 'Bugly'
   pod 'MJRefresh'
   pod 'HJTabViewController'
   pod 'Ono', :inhibit_warnings => true
