@@ -37,6 +37,7 @@
 
     [self willPasteboard];
     [self initNotification];
+    [self showAffirmation];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -99,7 +100,25 @@
     });
 }
 
-
+//免责声明弹窗
+- (void)showAffirmation{
+    if (self.userInfo.isAffirmation) {
+        return ;
+    }
+    NSString *str = @"《隐私协议和服务条款》\n【导言】\n欢迎您使用-磁力搜索APP！\n为使用磁力搜索服务，您应当阅读并遵守《磁力搜索使用条款和隐私政策协议》（以下简称“本协议”）。请您务必审慎阅读、充分理解各条款内容，特别是免除或限制责任的相应条款，以及开通或使用某项服务的单独协议，并选择接受或不接受。限制或免除责任条款可能以加粗形式提示您注意。\n除非您已阅读并接受本协议所有条款，否则您无权使用磁力搜索服务（以下简称“本服务”）。您对本服务的登录、查看、发布信息等使用行为即视为您已阅读并同意本协议的约束。\n如果您未满18周岁，请在法定监护人的陪同下阅读本协议，并特别注意未成年人使用条款\n一、【协议的范围】\n\n本协议是您与磁力搜索之间关于您使用磁力搜索服务所订立的协议。\n\n二、【用户行为规范】\n\n［信息内容规范］\n1. 本条所述信息内容是指用户使用本服务过程中所制作、复制、发布、传播 、偷拍的任何内容，包括但不限于磁力搜索功能的视频、图片、用户说明等注册信息及认证资料，或文字、语音、图片、视频、图文等发送、回复或自动回复消息和相关链接页面，以及其他使用本服务所产生的内容。\n2. 您理解并同意，磁力搜索一直致力于为用户提供便利的一款服务应用，您不得利用本服务制作、复制、发布、传播如下干扰磁力搜索 App正常运营，以及侵犯其他用户或第三方合法权益的内容：\n3. 发布、传送、传播、储存违反国家法律法规禁止的内容：\n（1）违反宪法确定的基本原则的；\n（2）危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；\n（3）损害国家荣誉和利益的；\n（4）煽动民族仇恨、民族歧视，破坏民族团结的；\n（5）破坏国家宗教政策，宣扬邪教和封建迷信的；\n（6）散布谣言，扰乱社会秩序，破坏社会稳定的；\n（7）散布淫秽、色情、赌博、暴力、恐怖或者教唆犯罪的；\n（8）侮辱或者诽谤他人，侵害他人合法权益的；\n（9）煽动非法集会、结社、游行、示威、聚众扰乱社会秩序的；\n（10）以非法偷拍或摄像等不正当手段；\n（11）含有法律、行政法规禁止的其他内容的。\n\n发布、传送、传播、储存侵害他人名誉权、肖像权、知识产权、商业秘密等合法权利的内容；\n 涉及他人隐私、个人信息或资料的；\n发布、传送、传播骚扰信息、广告信息及垃圾信息或含有任何性暗示的；\n其他违反法律法规、政策及公序良俗、社会公德或干扰磁力搜索正常运营和侵犯其他用户或第三方合法权益内容的信息。\n九、【特别声明】\n\n磁力搜索APP搜索到的内容均来自各大磁力用户分享内容，非用户个人私有或者说隐私内容。本APP(磁力搜索)仅对分享内容做显示，任何涉及 用户登录、分享传播等行为都属于磁力站点，我们承诺不做任何钓鱼，获取私人信息等侵害用户行为。搜索内容最终解释权归原磁力所有。 本APP非人工检索方式，不代表本APP立场，本APP不对其真实合法性负责，亦不承担任何法律责任。\n 九、【投诉反馈】\n投诉邮箱：386935679@qq.com\nQQ:386935679";
+    
+    UIAlertController *alvCtrl = [UIAlertController alertControllerWithTitle:@"免责声明" message:str preferredStyle:UIAlertControllerStyleAlert];
+    @WEAKSELF(self);
+    [alvCtrl addAction:[UIAlertAction actionWithTitle:@"不同意" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [selfWeak showAffirmation];
+    }]];
+    [alvCtrl addAction:[UIAlertAction actionWithTitle:@"同意" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        selfWeak.userInfo.isAffirmation = YES;
+        [selfWeak.userInfo save];
+    }]];
+    
+    [self presentViewController:alvCtrl animated:YES completion:nil];
+}
 
 - (IBAction)beginAction:(id)sender {
 

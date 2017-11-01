@@ -16,5 +16,6 @@
 @property (nonatomic,strong) NSMutableSet *searchLogsSet;
 ///是否禁用历史记录
 @property (nonatomic,assign) BOOL isSearchLogs;
-
+//是否同意免责声明
+@property (nonatomic,assign) BOOL isAffirmation;
 @end
