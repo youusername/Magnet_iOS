@@ -10,6 +10,9 @@
 #import "DownHtml.h"
 #import "RuleModel.h"
 #import "CommonMacro.h"
+#import "LRTextField.h"
+#import "UserInfoModel.h"
+#import "SVProgressHUD.h"
 #import <WebKit/WebKit.h>
 #import "ResultDataModel.h"
 #import "MainViewController.h"
@@ -17,14 +20,13 @@
 #import "BarTabViewController.h"
 #import "CAPopUpViewController.h"
 #import "KeywordsViewController.h"
-#import "UserInfoModel.h"
-#import "SVProgressHUD.h"
-
+#import "TTGTextTagCollectionView.h"
 
 @interface MainViewController ()<WKUIDelegate,WKNavigationDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *keyTextField;
+@property (strong, nonatomic) LRTextField *keyTextField;
 
 @property (nonatomic,strong) UserInfoModel * userInfo;
+@property (weak, nonatomic) IBOutlet TTGTextTagCollectionView *tagView;
 
 
 
@@ -38,6 +40,8 @@
     [self willPasteboard];
     [self initNotification];
     [self showAffirmation];
+    [self initTagView];
+    [self initTextField];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -46,7 +50,63 @@
 }
 
 #pragma mark - init
+- (void)initTextField{
+    LRTextField *textFieldValidation = [[LRTextField alloc] initWithFrame:CGRectMake(15, 320, 260, 30) labelHeight:15];
+    textFieldValidation.placeholder = @"输入关键字或者完整的URL";
+    textFieldValidation.borderStyle = UITextBorderStyleNone;
+    textFieldValidation.hintText = @"";
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, textFieldValidation.frame.size.height-1, textFieldValidation.frame.size.width, 0.5)];
+    line.backgroundColor = [UIColor grayColor];
+    [textFieldValidation addSubview:line];
+    [textFieldValidation setValidationBlock:^NSDictionary *(LRTextField *textField, NSString *text) {
+        [NSThread sleepForTimeInterval:1.0];
+        if ([text isEqualToString:@"abc"]) {
+            return @{ VALIDATION_INDICATOR_YES : @"Correct" };
+        }
+        return @{ VALIDATION_INDICATOR_NO : @"Error" };
+    }];
+    [self.view addSubview:textFieldValidation];
+    self.keyTextField = textFieldValidation;
+}
 
+- (void)initTagView{
+    NSArray *tags = @[@"AutoLayout", @"dynamically", @"calculates", @"the", @"size", @"and", @"position",
+                      @"of", @"all", @"the", @"views", @"in", @"your", @"view", @"hierarchy", @"based",
+                      @"on", @"constraints", @"placed", @"on", @"those", @"views", @"all", @"the", @"views", @"in", @"your", @"view", @"hierarchy", @"based",
+                      @"on", @"constraints", @"placed", @"on", @"those", @"views"];
+//    _tagView.clipsToBounds = NO;
+    _tagView.numberOfLines = 4;
+    _tagView.defaultConfig.tagShadowOffset = CGSizeMake(0, 0);
+    _tagView.defaultConfig.tagBorderWidth = 0;
+    _tagView.defaultConfig.tagSelectedBorderWidth = 0;
+    _tagView.defaultConfig.tagCornerRadius = 3;
+    _tagView.defaultConfig.tagTextFont = [UIFont systemFontOfSize:14 weight:UIFontWeightBold];
+    _tagView.scrollView.clipsToBounds = NO;
+//    _tagView = [TTGTextTagCollectionView new];
+    _tagView.alignment = TTGTagCollectionAlignmentFillByExpandingWidth;
+    _tagView.layer.borderColor = [UIColor grayColor].CGColor;
+//    _tagView.layer.borderWidth = 1;
+    _tagView.translatesAutoresizingMaskIntoConstraints = NO;
+//    [self.view addSubview:_tagView];
+    
+    NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[tagView]-20-|"
+                                                                    options:(NSLayoutFormatOptions) 0 metrics:nil
+                                                                      views:@{@"tagView": _tagView}];
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:_tagView
+                                                                     attribute:NSLayoutAttributeTop
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.view
+                                                                     attribute:NSLayoutAttributeTop
+                                                                    multiplier:1 constant:130];
+    [self.view addConstraint:topConstraint];
+    [self.view addConstraints:hConstraints];
+    
+    [_tagView addTags:tags];
+    for (NSInteger i = 0; i < 5; i++) {
+        [_tagView setTagAtIndex:arc4random_uniform((uint32_t)tags.count) selected:YES];
+    }
+    [_tagView reload];
+}
 - (void)initNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(willPasteboard)
@@ -152,7 +212,7 @@
     if (!str) {
         return;
     }
-    
+    //先判断是否禁用历史记录
     if (!self.userInfo.isSearchLogs) {
         [self.userInfo.searchLogsSet addObject:str];
         [self.userInfo save];

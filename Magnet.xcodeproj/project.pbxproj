@@ -10,6 +10,7 @@
 		119339B6DB5D4BE4F69E2395 /* Pods_Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6ED82452B5B14F29A1AA60 /* Pods_Magnet.framework */; };
 		6118A3D91FA3917D00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt in Resources */ = {isa = PBXBuildFile; fileRef = 6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */; };
 		612E57C71F9C933E0023341E /* URLKeyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E57C61F9C933E0023341E /* URLKeyModel.m */; };
+		613DE5B61FAAC84A00589CF5 /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 613DE5B51FAAC84A00589CF5 /* UIColor+Hexadecimal.m */; };
 		613F49591F9A143E0083CB50 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F49581F9A143E0083CB50 /* AppDelegate.m */; };
 		613F495C1F9A143E0083CB50 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F495B1F9A143E0083CB50 /* MainViewController.m */; };
 		613F495F1F9A143E0083CB50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 613F495D1F9A143E0083CB50 /* Main.storyboard */; };
@@ -41,6 +42,8 @@
 		6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */ = {isa = PBXFileReference; lastKnownFileType = file; path = 39fcefade0a6b2ab9c1d8209d311d6ce.crt; sourceTree = "<group>"; };
 		612E57C51F9C933E0023341E /* URLKeyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLKeyModel.h; sourceTree = "<group>"; };
 		612E57C61F9C933E0023341E /* URLKeyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLKeyModel.m; sourceTree = "<group>"; };
+		613DE5B41FAAC84900589CF5 /* UIColor+Hexadecimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hexadecimal.h"; sourceTree = "<group>"; };
+		613DE5B51FAAC84A00589CF5 /* UIColor+Hexadecimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hexadecimal.m"; sourceTree = "<group>"; };
 		613F49541F9A143E0083CB50 /* Magnet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Magnet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		613F49571F9A143E0083CB50 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		613F49581F9A143E0083CB50 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 				612E57C61F9C933E0023341E /* URLKeyModel.m */,
 				61C29DDD1FA8A1A600118B43 /* UserInfoModel.h */,
 				61C29DDE1FA8A1A600118B43 /* UserInfoModel.m */,
+				613DE5B41FAAC84900589CF5 /* UIColor+Hexadecimal.h */,
+				613DE5B51FAAC84A00589CF5 /* UIColor+Hexadecimal.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -308,20 +313,26 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Magnet/Pods-Magnet-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/CAPopUpViewController/CAPopUpViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/HJTabViewController/HJTabViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/LRTextField/LRTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Ono/Ono.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TTGTagCollectionView/TTGTagCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CAPopUpViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HJTabViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LRTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ono.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTGTagCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +397,7 @@
 				61C29DDC1FA89D7900118B43 /* SettingTableViewController.m in Sources */,
 				61C29DE21FA8AA6000118B43 /* SearchLogsTableViewController.m in Sources */,
 				6161E40B1F9C6A8700E8851F /* URLKeyViewController.m in Sources */,
+				613DE5B61FAAC84A00589CF5 /* UIColor+Hexadecimal.m in Sources */,
 				613F497C1F9A30E00083CB50 /* DownHtml.m in Sources */,
 				613F49591F9A143E0083CB50 /* AppDelegate.m in Sources */,
 			);

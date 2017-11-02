@@ -2,16 +2,18 @@
 platform :ios, '9.0'
 
 target 'Magnet' do
-  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  use_frameworks!
-
+    use_frameworks!
+    inhibit_all_warnings!
   # Pods for Magnet
-  pod 'Bugly'
-  pod 'MJRefresh'
-  pod 'HJTabViewController'
   pod 'Ono', :inhibit_warnings => true
-  pod 'AFNetworking', :inhibit_warnings => true
   pod 'YYKit', :inhibit_warnings => true
+  pod 'Bugly', :inhibit_warnings => true
+  pod 'MJRefresh', :inhibit_warnings => true
+  pod 'LRTextField', :inhibit_warnings => true
+  pod 'AFNetworking', :inhibit_warnings => true
   pod 'SVProgressHUD', :inhibit_warnings => true
-  pod 'CAPopUpViewController'
+  pod 'DZNEmptyDataSet', :inhibit_warnings => true
+  pod 'HJTabViewController', :inhibit_warnings => true
+  pod 'TTGTagCollectionView', :inhibit_warnings => true
+  pod 'CAPopUpViewController', :inhibit_warnings => true
 end
