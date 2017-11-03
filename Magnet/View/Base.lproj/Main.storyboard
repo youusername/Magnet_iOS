@@ -299,7 +299,7 @@
             </objects>
             <point key="canvasLocation" x="1172" y="-554.57271364317842"/>
         </scene>
-        <!--磁力搜索-->
+        <!--磁力搜-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="MainViewController" sceneMemberID="viewController">
@@ -311,14 +311,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwk-7z-er2">
-                                <rect key="frame" x="277" y="294" width="69" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="搜索"/>
-                                <connections>
-                                    <action selector="beginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H9w-Vw-ZSI"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大家正在搜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dps-18-5xW">
                                 <rect key="frame" x="16" y="78" width="98" height="21"/>
                                 <constraints>
@@ -336,17 +328,34 @@
                                     <constraint firstAttribute="height" constant="169" id="4oP-5i-Uln"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwk-7z-er2">
+                                <rect key="frame" x="16" y="365" width="343" height="35"/>
+                                <color key="backgroundColor" red="0.91229600500049568" green="0.92132863871337189" blue="0.92132863871337189" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="WKk-3W-HF4"/>
+                                </constraints>
+                                <state key="normal" title="搜索">
+                                    <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="beginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H9w-Vw-ZSI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dwk-7z-er2" secondAttribute="trailing" constant="16" id="5bw-B0-swI"/>
                             <constraint firstAttribute="trailing" secondItem="8wL-h5-qxj" secondAttribute="trailing" constant="16" id="BxZ-s6-7ag"/>
+                            <constraint firstItem="dwk-7z-er2" firstAttribute="top" secondItem="8wL-h5-qxj" secondAttribute="bottom" constant="89" id="IbQ-hX-0mj"/>
                             <constraint firstItem="8wL-h5-qxj" firstAttribute="top" secondItem="dps-18-5xW" secondAttribute="bottom" constant="8" id="PzW-Oz-8y3"/>
                             <constraint firstItem="dps-18-5xW" firstAttribute="top" secondItem="j2Q-ne-ujT" secondAttribute="bottom" constant="14" id="QgW-l0-AzQ"/>
+                            <constraint firstItem="dwk-7z-er2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="a0T-qo-6uG"/>
                             <constraint firstItem="8wL-h5-qxj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="lBg-QA-bcH"/>
                             <constraint firstItem="dps-18-5xW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="quq-Fa-1dD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="磁力搜索" id="6xL-Ta-2wf">
+                    <navigationItem key="navigationItem" title="磁力搜" id="6xL-Ta-2wf">
                         <barButtonItem key="backBarButtonItem" title=" " id="YPh-5E-Ieu"/>
                         <barButtonItem key="rightBarButtonItem" title="设置" id="gXS-VC-GqM">
                             <connections>

@@ -22,8 +22,8 @@
 #import "KeywordsViewController.h"
 #import "TTGTextTagCollectionView.h"
 
-@interface MainViewController ()<WKUIDelegate,WKNavigationDelegate>
-@property (strong, nonatomic) LRTextField *keyTextField;
+@interface MainViewController ()<WKUIDelegate,WKNavigationDelegate,TTGTextTagCollectionViewDelegate>
+@property (strong, nonatomic) UITextField *keyTextField;
 
 @property (nonatomic,strong) UserInfoModel * userInfo;
 @property (weak, nonatomic) IBOutlet TTGTextTagCollectionView *tagView;
@@ -51,35 +51,28 @@
 
 #pragma mark - init
 - (void)initTextField{
-    LRTextField *textFieldValidation = [[LRTextField alloc] initWithFrame:CGRectMake(15, 320, 260, 30) labelHeight:15];
+    UITextField *textFieldValidation = [[UITextField alloc] initWithFrame:CGRectMake(15, 320, kScreenWidth-32, 30)];
     textFieldValidation.placeholder = @"输入关键字或者完整的URL";
     textFieldValidation.borderStyle = UITextBorderStyleNone;
-    textFieldValidation.hintText = @"";
+//    textFieldValidation.hintText = @"";
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, textFieldValidation.frame.size.height-1, textFieldValidation.frame.size.width, 0.5)];
     line.backgroundColor = [UIColor grayColor];
     [textFieldValidation addSubview:line];
-    [textFieldValidation setValidationBlock:^NSDictionary *(LRTextField *textField, NSString *text) {
-        [NSThread sleepForTimeInterval:1.0];
-        if ([text isEqualToString:@"abc"]) {
-            return @{ VALIDATION_INDICATOR_YES : @"Correct" };
-        }
-        return @{ VALIDATION_INDICATOR_NO : @"Error" };
-    }];
+
     [self.view addSubview:textFieldValidation];
     self.keyTextField = textFieldValidation;
 }
 
 - (void)initTagView{
-    NSArray *tags = @[@"AutoLayout", @"dynamically", @"calculates", @"the", @"size", @"and", @"position",
-                      @"of", @"all", @"the", @"views", @"in", @"your", @"view", @"hierarchy", @"based",
-                      @"on", @"constraints", @"placed", @"on", @"those", @"views", @"all", @"the", @"views", @"in", @"your", @"view", @"hierarchy", @"based",
-                      @"on", @"constraints", @"placed", @"on", @"those", @"views"];
+    NSArray *tags = @[@"如何掌控你的自由时间",@"公开课", @"TED", @"文学",@"爱情应有的样子",@"数学", @"语言", @"社会", @"商业",
+                      @"传媒", @"工程", @"心理", @"医学", @"历史", @"哲学", @"天文", @"政治"];
 //    _tagView.clipsToBounds = NO;
     _tagView.numberOfLines = 4;
     _tagView.defaultConfig.tagShadowOffset = CGSizeMake(0, 0);
     _tagView.defaultConfig.tagBorderWidth = 0;
     _tagView.defaultConfig.tagSelectedBorderWidth = 0;
     _tagView.defaultConfig.tagCornerRadius = 3;
+    _tagView.delegate = self;
     _tagView.defaultConfig.tagTextFont = [UIFont systemFontOfSize:14 weight:UIFontWeightBold];
     _tagView.scrollView.clipsToBounds = NO;
 //    _tagView = [TTGTextTagCollectionView new];
@@ -253,7 +246,15 @@
     return js;
     
 }
+#pragma mark - TTGTextTagCollectionViewDelegate
+- (void)textTagCollectionView:(TTGTextTagCollectionView *)textTagCollectionView didTapTag:(NSString *)tagText atIndex:(NSUInteger)index selected:(BOOL)selected{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.keyTextField.text = tagText;
 
+        [self beginAction:nil];
+        
+    });
+}
 - (UserInfoModel *)userInfo{
     if (!_userInfo) {
         _userInfo = [UserInfoModel getUserInfoInstance];
