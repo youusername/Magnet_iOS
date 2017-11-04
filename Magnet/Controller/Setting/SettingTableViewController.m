@@ -10,7 +10,7 @@
 #import "UserInfoModel.h"
 #import "SearchLogsTableViewController.h"
 #import "CommonMacro.h"
-#import "AffirmationViewController.h"
+#import "StatementViewController.h"
 #import <StoreKit/StoreKit.h>
 
 @interface SettingTableViewController ()
@@ -97,7 +97,7 @@
                 case 0:{
 //                    法律声明
                     
-                    AffirmationViewController * aff = [self.storyboard instantiateViewControllerWithIdentifier:@"AffirmationViewController"];
+                    StatementViewController * aff = [self.storyboard instantiateViewControllerWithIdentifier:@"AffirmationViewController"];
                     [self.navigationController pushViewController:aff animated:YES];
                 }
                     
@@ -105,9 +105,9 @@
                 case 1:{
 //                    为APP评分
                     
-                    static NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1191811748";
-                    static NSString *templateReviewURLiOS7 = @"itms-apps://itunes.apple.com/app/id1191811748";
-                    static NSString *templateReviewURLiOS8 = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1191811748&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
+                    static NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1306575398";
+                    static NSString *templateReviewURLiOS7 = @"itms-apps://itunes.apple.com/app/id1306575398";
+                    static NSString *templateReviewURLiOS8 = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1306575398&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
                     
                     NSString *reviewURL = templateReviewURL;
                     // iOS 7 needs a different templateReviewURL @see https://github.com/arashpayan/appirater/issues/131

@@ -22,11 +22,12 @@
 		613F49771F9A2F4F0083CB50 /* rule.json in Resources */ = {isa = PBXBuildFile; fileRef = 613F49761F9A2F450083CB50 /* rule.json */; };
 		613F49791F9A2FDF0083CB50 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F49781F9A2FDF0083CB50 /* MobileCoreServices.framework */; };
 		613F497C1F9A30E00083CB50 /* DownHtml.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F497A1F9A30E00083CB50 /* DownHtml.m */; };
+		614411C31FAD8B59002B233F /* statement.json in Resources */ = {isa = PBXBuildFile; fileRef = 614411C21FAD8B59002B233F /* statement.json */; };
 		6161E4051F9AEB3D00E8851F /* KeywordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6161E4041F9AEB3D00E8851F /* KeywordsViewController.m */; };
 		6161E4081F9B1AC400E8851F /* KeywordsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6161E4071F9B1AC400E8851F /* KeywordsTableViewCell.m */; };
 		6161E40B1F9C6A8700E8851F /* URLKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6161E40A1F9C6A8700E8851F /* URLKeyViewController.m */; };
 		6161E40E1F9C74C700E8851F /* URLKeyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6161E40D1F9C74C700E8851F /* URLKeyTableViewCell.m */; };
-		6168F9541FA9F73F00B6083B /* AffirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6168F9531FA9F73F00B6083B /* AffirmationViewController.m */; };
+		6168F9541FA9F73F00B6083B /* StatementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6168F9531FA9F73F00B6083B /* StatementViewController.m */; };
 		6168F9561FA9FA5A00B6083B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6168F9551FA9FA5A00B6083B /* StoreKit.framework */; };
 		6181FABA1F9AE10500F5FE65 /* ResultDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6181FAB81F9AE10500F5FE65 /* ResultDataModel.m */; };
 		6181FABD1F9AE3C800F5FE65 /* RuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6181FABC1F9AE3C800F5FE65 /* RuleModel.m */; };
@@ -62,6 +63,7 @@
 		613F49781F9A2FDF0083CB50 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		613F497A1F9A30E00083CB50 /* DownHtml.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownHtml.m; sourceTree = "<group>"; };
 		613F497B1F9A30E00083CB50 /* DownHtml.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownHtml.h; sourceTree = "<group>"; };
+		614411C21FAD8B59002B233F /* statement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = statement.json; sourceTree = "<group>"; };
 		6161E4031F9AEB3D00E8851F /* KeywordsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeywordsViewController.h; sourceTree = "<group>"; };
 		6161E4041F9AEB3D00E8851F /* KeywordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeywordsViewController.m; sourceTree = "<group>"; };
 		6161E4061F9B1AC400E8851F /* KeywordsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeywordsTableViewCell.h; sourceTree = "<group>"; };
@@ -70,8 +72,8 @@
 		6161E40A1F9C6A8700E8851F /* URLKeyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLKeyViewController.m; sourceTree = "<group>"; };
 		6161E40C1F9C74C700E8851F /* URLKeyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLKeyTableViewCell.h; sourceTree = "<group>"; };
 		6161E40D1F9C74C700E8851F /* URLKeyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLKeyTableViewCell.m; sourceTree = "<group>"; };
-		6168F9521FA9F73F00B6083B /* AffirmationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AffirmationViewController.h; sourceTree = "<group>"; };
-		6168F9531FA9F73F00B6083B /* AffirmationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AffirmationViewController.m; sourceTree = "<group>"; };
+		6168F9521FA9F73F00B6083B /* StatementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatementViewController.h; sourceTree = "<group>"; };
+		6168F9531FA9F73F00B6083B /* StatementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatementViewController.m; sourceTree = "<group>"; };
 		6168F9551FA9FA5A00B6083B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6181FAB81F9AE10500F5FE65 /* ResultDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultDataModel.m; sourceTree = "<group>"; };
 		6181FAB91F9AE10500F5FE65 /* ResultDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResultDataModel.h; sourceTree = "<group>"; };
@@ -117,6 +119,8 @@
 		6118A3D71FA3903C00409599 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				613F49761F9A2F450083CB50 /* rule.json */,
+				614411C21FAD8B59002B233F /* statement.json */,
 				6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */,
 			);
 			path = Other;
@@ -151,7 +155,6 @@
 				613F49601F9A143E0083CB50 /* Assets.xcassets */,
 				613F49621F9A143E0083CB50 /* LaunchScreen.storyboard */,
 				613F49651F9A143E0083CB50 /* Info.plist */,
-				613F49761F9A2F450083CB50 /* rule.json */,
 				6118A3D71FA3903C00409599 /* Other */,
 				613F49661F9A143E0083CB50 /* main.m */,
 			);
@@ -217,8 +220,8 @@
 				61C29DDB1FA89D7900118B43 /* SettingTableViewController.m */,
 				61C29DE01FA8AA6000118B43 /* SearchLogsTableViewController.h */,
 				61C29DE11FA8AA6000118B43 /* SearchLogsTableViewController.m */,
-				6168F9521FA9F73F00B6083B /* AffirmationViewController.h */,
-				6168F9531FA9F73F00B6083B /* AffirmationViewController.m */,
+				6168F9521FA9F73F00B6083B /* StatementViewController.h */,
+				6168F9531FA9F73F00B6083B /* StatementViewController.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				6118A3D91FA3917D00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt in Resources */,
 				613F49611F9A143E0083CB50 /* Assets.xcassets in Resources */,
 				613F495F1F9A143E0083CB50 /* Main.storyboard in Resources */,
+				614411C31FAD8B59002B233F /* statement.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,7 +389,7 @@
 				61A4934A1FA0B9A400A1F87F /* BarTabViewController.m in Sources */,
 				612E57C71F9C933E0023341E /* URLKeyModel.m in Sources */,
 				61A4934F1FA0C71B00A1F87F /* CommonMacro.h in Sources */,
-				6168F9541FA9F73F00B6083B /* AffirmationViewController.m in Sources */,
+				6168F9541FA9F73F00B6083B /* StatementViewController.m in Sources */,
 				613F49741F9A229D0083CB50 /* TagsScrollView.m in Sources */,
 				6161E40E1F9C74C700E8851F /* URLKeyTableViewCell.m in Sources */,
 				613F49671F9A143E0083CB50 /* main.m in Sources */,

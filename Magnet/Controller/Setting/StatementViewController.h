@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AffirmationViewController : UIViewController
+@interface StatementViewController : UIViewController
 
 @end

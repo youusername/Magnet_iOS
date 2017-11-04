@@ -6,17 +6,21 @@
 //  Copyright © 2017年 214644496@qq.com. All rights reserved.
 //
 
-#import "AffirmationViewController.h"
+#import "StatementViewController.h"
 
-@interface AffirmationViewController ()
+@interface StatementViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
-@implementation AffirmationViewController
+@implementation StatementViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    NSString * jsonPath = [[NSBundle mainBundle] pathForResource:@"statement" ofType:@"json"];
+    self.textView.text = [NSString stringWithContentsOfFile:jsonPath encoding:NSUTF8StringEncoding error:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {

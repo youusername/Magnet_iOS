@@ -12,6 +12,7 @@
 #import "URLKeyModel.h"
 #import "URLKeyTableViewCell.h"
 #import "URLKeyViewController.h"
+#import "SVProgressHUD.h"
 
 @interface URLKeyViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
@@ -34,6 +35,27 @@
         
     }];
 }
+- (IBAction)copyAction:(id)sender {
+    __block NSString*copyStr = @"";
+    
+    [self.listArray enumerateObjectsUsingBlock:^(URLKeyModel *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.isSelect) {
+            copyStr = [NSString stringWithFormat:@"%@\n",obj.string];
+        }
+    }];
+    
+    if (![copyStr isEqualToString:@""]) {
+        UIPasteboard*pasteboard = [UIPasteboard generalPasteboard];
+        [pasteboard setString:copyStr];
+        
+        [SVProgressHUD showSuccessWithStatus:@"复制成功!"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
+    }
+}
+
+
 - (NSArray*)resultAnalysis:(NSData*)htmlData{
     
     NSMutableArray *resultArray = [NSMutableArray array];
