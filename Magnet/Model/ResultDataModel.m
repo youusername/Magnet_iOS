@@ -57,7 +57,7 @@
         firstMagnet = [firstMagnet componentsSeparatedByString:@"&"][0];
     }
     NSString*magnet = @"";
-    if (magnet.length>40) {
+    if (firstMagnet.length>=40) {
         magnet=[firstMagnet substringWithRange:NSMakeRange(firstMagnet.length-40,40)];
     }
     R_model.magnet = [NSString stringWithFormat:@"magnet:?xt=urn:btih:%@",magnet];

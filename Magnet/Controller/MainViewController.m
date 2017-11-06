@@ -51,7 +51,7 @@
 
 #pragma mark - init
 - (void)initTextField{
-    UITextField *textFieldValidation = [[UITextField alloc] initWithFrame:CGRectMake(15, 420, kScreenWidth-32, 30)];
+    UITextField *textFieldValidation = [[UITextField alloc] initWithFrame:CGRectMake(15, 350, kScreenWidth-32, 30)];
     textFieldValidation.placeholder = @"输入关键字或者完整的URL";
     textFieldValidation.borderStyle = UITextBorderStyleNone;
 //    textFieldValidation.hintText = @"";
