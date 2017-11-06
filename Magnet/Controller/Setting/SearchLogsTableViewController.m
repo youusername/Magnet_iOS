@@ -7,6 +7,9 @@
 //
 
 #import "SearchLogsTableViewController.h"
+#import "URLKeyViewController.h"
+#import "BarTabViewController.h"
+
 
 @interface SearchLogsTableViewController ()
 
@@ -56,14 +59,31 @@
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    UILabel *label = [cell.contentView viewWithTag:222];
+    NSString *searchString = label.text;
+    
+    if (!searchString || [searchString isEqualToString:@""]) {
+        NSLog(@"textField nil");
+        return;
+    }
+    
+    NSString *regexString = @"http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexString];
+    BOOL isMatch = [pred evaluateWithObject:searchString];
+    
+    if (isMatch) {
+        URLKeyViewController * urlKeyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"URLKeyViewController"];
+        urlKeyVC.urlString = searchString;
+        [self.navigationController pushViewController:urlKeyVC animated:YES];
+    }else{
+        BarTabViewController *barTabVC = [self.storyboard instantiateViewControllerWithIdentifier:@"BarTabViewController"];
+        barTabVC.keyString = searchString;
+        [self.navigationController pushViewController:barTabVC animated:YES];
+        
+    }
 }
-*/
 
 
 // Override to support editing the table view.

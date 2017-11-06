@@ -15,6 +15,7 @@
 #import "SVProgressHUD.h"
 #import <WebKit/WebKit.h>
 #import "ResultDataModel.h"
+#import "WebViewController.h"
 #import "MainViewController.h"
 #import "URLKeyViewController.h"
 #import "BarTabViewController.h"
@@ -22,12 +23,14 @@
 #import "KeywordsViewController.h"
 #import "TTGTextTagCollectionView.h"
 
+
 @interface MainViewController ()<WKUIDelegate,WKNavigationDelegate,TTGTextTagCollectionViewDelegate>
-@property (strong, nonatomic) UITextField *keyTextField;
 
 @property (nonatomic,strong) UserInfoModel * userInfo;
 @property (weak, nonatomic) IBOutlet TTGTextTagCollectionView *tagView;
-
+@property (weak, nonatomic) IBOutlet UILabel *curLabel;
+@property (weak, nonatomic) IBOutlet UITextField *keyTextField;
+@property (nonatomic,assign) SiteType siteType;
 
 
 @end
@@ -37,6 +40,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self bingAction:nil];
+    
     [self willPasteboard];
     [self initNotification];
     [self showAffirmation];
@@ -51,7 +56,7 @@
 
 #pragma mark - init
 - (void)initTextField{
-    UITextField *textFieldValidation = [[UITextField alloc] initWithFrame:CGRectMake(15, 350, kScreenWidth-32, 30)];
+    UITextField *textFieldValidation = self.keyTextField;;
     textFieldValidation.placeholder = @"输入关键字或者完整的URL";
     textFieldValidation.borderStyle = UITextBorderStyleNone;
 //    textFieldValidation.hintText = @"";
@@ -59,8 +64,8 @@
     line.backgroundColor = [UIColor grayColor];
     [textFieldValidation addSubview:line];
 
-    [self.view addSubview:textFieldValidation];
-    self.keyTextField = textFieldValidation;
+//    [self.view addSubview:textFieldValidation];
+//    self.keyTextField = textFieldValidation;
 }
 
 - (void)initTagView{
@@ -73,7 +78,11 @@
     _tagView.defaultConfig.tagSelectedBorderWidth = 0;
     _tagView.defaultConfig.tagCornerRadius = 3;
     _tagView.delegate = self;
-    _tagView.defaultConfig.tagTextFont = [UIFont systemFontOfSize:14 weight:UIFontWeightBold];
+    if (@available(iOS 8.2, *)) {
+        _tagView.defaultConfig.tagTextFont = [UIFont systemFontOfSize:14 weight:UIFontWeightBold];
+    } else {
+        // Fallback on earlier versions
+    }
     _tagView.scrollView.clipsToBounds = NO;
 //    _tagView = [TTGTextTagCollectionView new];
     _tagView.alignment = TTGTagCollectionAlignmentFillByExpandingWidth;
@@ -184,17 +193,28 @@
         return;
     }
     
+    if (![searchString hasPrefix:@"1024"]) {
+        
+        WebViewController *web = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
+        web.view.backgroundColor = [UIColor whiteColor];
+        web.siteType = self.siteType;
+        web.string = searchString;
+        [self.navigationController pushViewController:web animated:YES];
+        return;
+    }
+    
+    
     NSString *regexString = @"http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexString];
     BOOL isMatch = [pred evaluateWithObject:searchString];
-    
+    NSString * keyString =  [searchString stringByReplacingOccurrencesOfString:@"1024" withString:@""];
     if (isMatch) {
         URLKeyViewController * urlKeyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"URLKeyViewController"];
-        urlKeyVC.urlString = searchString;
+        urlKeyVC.urlString = keyString;
         [self.navigationController pushViewController:urlKeyVC animated:YES];
     }else{
         BarTabViewController *barTabVC = [self.storyboard instantiateViewControllerWithIdentifier:@"BarTabViewController"];
-        barTabVC.keyString = searchString;
+        barTabVC.keyString = keyString;
         [self.navigationController pushViewController:barTabVC animated:YES];
 
     }
@@ -217,6 +237,28 @@
     [super touchesBegan:touches withEvent:event];
      [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
+
+- (IBAction)googleAction:(id)sender {
+    [self setCurLabelText:@"Google"];
+    self.siteType = SiteTypeGoogle;
+}
+- (IBAction)bingAction:(id)sender {
+    [self setCurLabelText:@"bing"];
+    self.siteType = SiteTypeBing;
+}
+- (IBAction)sogouAction:(id)sender {
+    [self setCurLabelText:@"sogou"];
+    self.siteType = SiteTypeSogou;
+}
+- (IBAction)baiduAction:(id)sender {
+    [self setCurLabelText:@"baidu"];
+    self.siteType = SiteTypeBaidu;
+}
+
+- (void)setCurLabelText:(NSString*)str{
+    self.curLabel.text = [NSString stringWithFormat:@"当前搜索站点:%@",str];
+}
+
 #pragma mark - WKNavigationDelegate
 // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
