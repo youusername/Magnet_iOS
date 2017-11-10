@@ -1,7 +1,7 @@
 
 
 #define kAppDidBecomeActiveNotification  @"appDidBecomeActive"
-
+#define MagnetUpdateRuleURL    @"https://github.com/youusername/rule/archive/master.zip"
 
 typedef NS_ENUM(NSInteger, SiteType) {
     SiteTypeNone              = 0,

@@ -56,6 +56,10 @@
                 break;
                 
             default:
+            {
+            
+                self.searchURL = @"";
+            }
                 break;
         }
     }
@@ -65,12 +69,17 @@
     if (string) {
         _string = string;
         
-        
+        NSURL * web_url;
+        if (self.siteType != 0) {
         NSString *url = [self.searchURL stringByReplacingOccurrencesOfString:@"-site-" withString:curSite];
         url = [url stringByReplacingOccurrencesOfString:@"-key-" withString:string];
         
         NSString * urlStr = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-        NSURL * web_url = [NSURL URLWithString:urlStr];
+        web_url = [NSURL URLWithString:urlStr];
+        }else{
+//            NSString * urlStr = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+            web_url = [NSURL URLWithString:string];
+        }
         
         [self.myWebView loadRequest:[NSURLRequest requestWithURL:web_url]];
     }

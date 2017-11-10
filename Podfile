@@ -10,6 +10,7 @@ target 'Magnet' do
   pod 'Bugly', :inhibit_warnings => true
   pod 'MJRefresh', :inhibit_warnings => true
   pod 'LRTextField', :inhibit_warnings => true
+  pod 'SSZipArchive', :inhibit_warnings => true
   pod 'AFNetworking', :inhibit_warnings => true
   pod 'SVProgressHUD', :inhibit_warnings => true
   pod 'DZNEmptyDataSet', :inhibit_warnings => true

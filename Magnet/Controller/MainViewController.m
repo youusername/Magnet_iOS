@@ -11,7 +11,9 @@
 #import "RuleModel.h"
 #import "CommonMacro.h"
 #import "LRTextField.h"
+#import "SSZipArchive.h"
 #import "UserInfoModel.h"
+#import <objc/message.h>
 #import "SVProgressHUD.h"
 #import <WebKit/WebKit.h>
 #import "ResultDataModel.h"
@@ -24,15 +26,18 @@
 #import "TTGTextTagCollectionView.h"
 
 
-@interface MainViewController ()<WKUIDelegate,WKNavigationDelegate,TTGTextTagCollectionViewDelegate>
+
+@interface MainViewController ()<WKUIDelegate,WKNavigationDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UserInfoModel * userInfo;
-@property (weak, nonatomic) IBOutlet TTGTextTagCollectionView *tagView;
 @property (weak, nonatomic) IBOutlet UILabel *curLabel;
 @property (weak, nonatomic) IBOutlet UITextField *keyTextField;
 @property (nonatomic,assign) SiteType siteType;
 
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
 
+@property (nonatomic,strong) NSMutableArray<Class>*viewControllers;
+@property (nonatomic,strong) NSMutableDictionary * dataDic;
 @end
 
 @implementation MainViewController
@@ -40,13 +45,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
+    self.viewControllers = [@[[WebViewController class],[URLKeyViewController class],[BarTabViewController class],[UIViewController class],[UINavigationController class]] mutableCopy];
+    
+    
     [self bingAction:nil];
     
     [self willPasteboard];
     [self initNotification];
     [self showAffirmation];
-//    [self initTagView];
+
     [self initTextField];
+    
+    [self downJson];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -54,6 +66,43 @@
     [SVProgressHUD dismiss];
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSInteger number = 0;
+    if (self.dataDic[@"present"]) {
+        NSArray *array = self.dataDic[@"present"];
+        number = array.count;
+    }
+    return number;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *reuseIdentifier = @"cell";
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (!cell)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    }
+    
+    NSArray *array = self.dataDic[@"present"];
+    NSDictionary *dic = array[indexPath.row];
+    if (array&&dic) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ 介绍",dic[@"name"]];
+    }
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray *array = self.dataDic[@"present"];
+    NSDictionary *dic = array[indexPath.row];
+    WebViewController *web = [self.storyboard instantiateViewControllerWithIdentifier:[self.viewControllers[0] className]];
+    
+    web.view.backgroundColor = [UIColor whiteColor];
+    web.siteType = 0;
+    web.string = dic[@"url"];
+    [self.navigationController pushViewController:web animated:YES];
+}
 #pragma mark - init
 - (void)initTextField{
     UITextField *textFieldValidation = self.keyTextField;;
@@ -68,47 +117,6 @@
 //    self.keyTextField = textFieldValidation;
 }
 
-- (void)initTagView{
-    NSArray *tags = @[@"如何掌控你的自由时间",@"公开课", @"TED", @"文学",@"爱情应有的样子",@"数学", @"语言", @"社会", @"商业",
-                      @"传媒", @"工程", @"心理", @"医学", @"历史", @"哲学", @"天文", @"政治"];
-//    _tagView.clipsToBounds = NO;
-    _tagView.numberOfLines = 4;
-    _tagView.defaultConfig.tagShadowOffset = CGSizeMake(0, 0);
-    _tagView.defaultConfig.tagBorderWidth = 0;
-    _tagView.defaultConfig.tagSelectedBorderWidth = 0;
-    _tagView.defaultConfig.tagCornerRadius = 3;
-    _tagView.delegate = self;
-    if (@available(iOS 8.2, *)) {
-        _tagView.defaultConfig.tagTextFont = [UIFont systemFontOfSize:14 weight:UIFontWeightBold];
-    } else {
-        // Fallback on earlier versions
-    }
-    _tagView.scrollView.clipsToBounds = NO;
-//    _tagView = [TTGTextTagCollectionView new];
-    _tagView.alignment = TTGTagCollectionAlignmentFillByExpandingWidth;
-    _tagView.layer.borderColor = [UIColor grayColor].CGColor;
-//    _tagView.layer.borderWidth = 1;
-    _tagView.translatesAutoresizingMaskIntoConstraints = NO;
-//    [self.view addSubview:_tagView];
-    
-    NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[tagView]-20-|"
-                                                                    options:(NSLayoutFormatOptions) 0 metrics:nil
-                                                                      views:@{@"tagView": _tagView}];
-    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:_tagView
-                                                                     attribute:NSLayoutAttributeTop
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:self.view
-                                                                     attribute:NSLayoutAttributeTop
-                                                                    multiplier:1 constant:130];
-    [self.view addConstraint:topConstraint];
-    [self.view addConstraints:hConstraints];
-    
-    [_tagView addTags:tags];
-    for (NSInteger i = 0; i < 5; i++) {
-        [_tagView setTagAtIndex:arc4random_uniform((uint32_t)tags.count) selected:YES];
-    }
-    [_tagView reload];
-}
 - (void)initNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(willPasteboard)
@@ -193,35 +201,91 @@
         return;
     }
     
-    if (![searchString hasPrefix:@"1024"]) {
-        
-        WebViewController *web = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
-        web.view.backgroundColor = [UIColor whiteColor];
-        web.siteType = self.siteType;
-        web.string = searchString;
-        [self.navigationController pushViewController:web animated:YES];
-        return;
-    }
-    
+//    if (![searchString hasPrefix:@"1024"]) {
+//
+//
+//        WebViewController *web = [self.storyboard instantiateViewControllerWithIdentifier:[self.viewControllers[0] className]];
+//
+//        web.view.backgroundColor = [UIColor whiteColor];
+//        web.siteType = self.siteType;
+//        web.string = searchString;
+//        [self.navigationController pushViewController:web animated:YES];
+//        return;
+//    }
     
     NSString *regexString = @"http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexString];
     BOOL isMatch = [pred evaluateWithObject:searchString];
     NSString * keyString =  [searchString stringByReplacingOccurrencesOfString:@"1024" withString:@""];
     if (isMatch) {
-        URLKeyViewController * urlKeyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"URLKeyViewController"];
-        urlKeyVC.urlString = keyString;
+        UIViewController *urlKeyVC = [self.storyboard instantiateViewControllerWithIdentifier:[self.viewControllers[1] className]];
+        [urlKeyVC setValue:keyString forKey:@"urlString"];
         [self.navigationController pushViewController:urlKeyVC animated:YES];
     }else{
-        BarTabViewController *barTabVC = [self.storyboard instantiateViewControllerWithIdentifier:@"BarTabViewController"];
-        barTabVC.keyString = keyString;
+        UIViewController *barTabVC = [self.storyboard instantiateViewControllerWithIdentifier:[self.viewControllers[2] className]];
+        [barTabVC setValue:keyString forKey:@"keyString"];
         [self.navigationController pushViewController:barTabVC animated:YES];
 
     }
     
     [self addHistoricalLogs:searchString];
 }
-
+- (void)downJson{
+        NSURL*url = [NSURL URLWithString:MagnetUpdateRuleURL];
+        NSURLRequest * request = [NSURLRequest requestWithURL:url];
+        NSURLSession * session = [NSURLSession sharedSession];
+        NSURLSessionDataTask * dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+            [data writeToFile:[docPath stringByAppendingString:@"/rule.zip"] atomically:YES ];
+            
+            [[NSFileManager defaultManager]removeItemAtPath:[docPath stringByAppendingString:@"/rule-master"] error:nil];
+            
+            [SSZipArchive unzipFileAtPath:[docPath stringByAppendingString:@"/rule.zip"] toDestination:[docPath stringByAppendingString:@"/"] progressHandler:^(NSString * _Nonnull entry, unz_file_info zipInfo, long entryNumber, long total) {
+//                NSLog(@"entry %@",entry);
+    
+            } completionHandler:^(NSString * _Nonnull path, BOOL succeeded, NSError * _Nonnull error) {
+    
+//                NSLog(@"path %@",path);
+                if (succeeded) {
+                    NSString *pathStr = [docPath stringByAppendingPathComponent:@"/rule-master/magnetRule.json"];
+                    NSData *data = [NSData dataWithContentsOfFile:pathStr];
+                    self.dataDic = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil] mutableCopy];
+                    
+                    NSString*vStr = KBundleShortVersionString;
+                    NSString*vData= self.dataDic[@"v"];
+                    NSArray *v_arry =[vStr componentsSeparatedByString:@"."];
+                    NSInteger vStrInt =(([v_arry[0] integerValue]*100)+[v_arry[1] integerValue]*10+[v_arry[2] integerValue]);
+                    v_arry =[vData componentsSeparatedByString:@"."];
+                    NSInteger vDataInt =(([v_arry[0] integerValue]*100)+[v_arry[1] integerValue]*10+[v_arry[2] integerValue]);
+                    NSString*bStr = KFBundleVersion;
+                    NSString*bData= self.dataDic[@"b"];
+                    if (vDataInt>=vStrInt) {
+                        if ([bData doubleValue]<[bStr doubleValue]) {
+                            
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                                
+                                [self.myTableView reloadData];
+                            });
+                        }else{
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                                self.myTableView.hidden = YES;
+                            });
+                        }
+                    }else{
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            [self.myTableView reloadData];
+                            
+                        });
+                    }
+                }
+            }];
+    
+        }];
+        [dataTask resume];
+}
 - (void)addHistoricalLogs:(NSString*)str{
     if (!str) {
         return;
@@ -259,45 +323,6 @@
     self.curLabel.text = [NSString stringWithFormat:@"当前搜索站点:%@",str];
 }
 
-#pragma mark - WKNavigationDelegate
-// 当内容开始返回时调用
-- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
-//    NSLog(@"Commit");
-}
-// 页面开始加载时调用
-- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
-//    NSLog(@"Start");
-}
-// 页面加载完成之后调用
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-//    NSLog(@"Finish");
-    NSString *jsToGetHTMLSource =  [self createGetHTMLJavaScript];
-    
-//    @WEAKSELF(self);
-    [webView evaluateJavaScript:jsToGetHTMLSource completionHandler:^(id _Nullable HTMLSource, NSError * _Nullable error) {
-        NSLog(@"web_Done");
-//        [selfWeak reloadCollectionInHtml:HTMLSource inURL:selfWeak.web.URL.absoluteString];
-//        [selfWeak.web removeFromSuperview];
-    }];
-}
-// 页面加载失败时调用
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
-    
-}
-- (NSString*)createGetHTMLJavaScript{
-    NSString *js = @"document.getElementsByTagName('html')[0].innerHTML";
-    return js;
-    
-}
-#pragma mark - TTGTextTagCollectionViewDelegate
-- (void)textTagCollectionView:(TTGTextTagCollectionView *)textTagCollectionView didTapTag:(NSString *)tagText atIndex:(NSUInteger)index selected:(BOOL)selected{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.keyTextField.text = tagText;
-
-        [self beginAction:nil];
-        
-    });
-}
 - (UserInfoModel *)userInfo{
     if (!_userInfo) {
         _userInfo = [UserInfoModel getUserInfoInstance];
