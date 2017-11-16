@@ -101,6 +101,7 @@
     web.view.backgroundColor = [UIColor whiteColor];
     web.siteType = 0;
     web.string = dic[@"url"];
+    web.title = dic[@"name"];
     [self.navigationController pushViewController:web animated:YES];
 }
 #pragma mark - init
@@ -230,61 +231,82 @@
     
     [self addHistoricalLogs:searchString];
 }
+- (BOOL)unZip:(NSString *)docPath {
+    return [SSZipArchive unzipFileAtPath:[docPath stringByAppendingString:@"/rule.zip"] toDestination:[docPath stringByAppendingString:@"/"] progressHandler:^(NSString * _Nonnull entry, unz_file_info zipInfo, long entryNumber, long total) {
+        //                NSLog(@"entry %@",entry);
+        
+    } completionHandler:^(NSString * _Nonnull path, BOOL succeeded, NSError * _Nonnull error) {
+        
+        //                NSLog(@"path %@",path);
+        if (succeeded) {
+            NSString *pathStr = [docPath stringByAppendingPathComponent:@"/rule-master/magnetRule.json"];
+            NSData *data = [NSData dataWithContentsOfFile:pathStr];
+            self.dataDic = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil] mutableCopy];
+            
+            NSString*vStr = KBundleShortVersionString;
+            NSString*vData= self.dataDic[@"v"];
+            NSArray *v_arry =[vStr componentsSeparatedByString:@"."];
+            NSInteger vStrInt =(([v_arry[0] integerValue]*100)+[v_arry[1] integerValue]*10+[v_arry[2] integerValue]);
+            v_arry =[vData componentsSeparatedByString:@"."];
+            NSInteger vDataInt =(([v_arry[0] integerValue]*100)+[v_arry[1] integerValue]*10+[v_arry[2] integerValue]);
+            NSString*bStr = KFBundleVersion;
+            NSString*bData= self.dataDic[@"b"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [SVProgressHUD dismiss];
+            });
+            
+            if (vDataInt>=vStrInt) {
+                if ([bData doubleValue]<[bStr doubleValue]) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        
+                        [self.myTableView reloadData];
+                    });
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        self.myTableView.hidden = YES;
+                    });
+                }
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.myTableView reloadData];
+                    
+                });
+            }
+        }
+    }];
+}
+
 - (void)downJson{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [SVProgressHUD show];
+    });
+    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[docPath stringByAppendingString:@"/rule-master"]]) {
+        
+        [[NSFileManager defaultManager]removeItemAtPath:[docPath stringByAppendingString:@"/rule-master"] error:nil];
+        
+        [self unZip:docPath];
+    }else{
         NSURL*url = [NSURL URLWithString:MagnetUpdateRuleURL];
         NSURLRequest * request = [NSURLRequest requestWithURL:url];
         NSURLSession * session = [NSURLSession sharedSession];
         NSURLSessionDataTask * dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
             [data writeToFile:[docPath stringByAppendingString:@"/rule.zip"] atomically:YES ];
             
             [[NSFileManager defaultManager]removeItemAtPath:[docPath stringByAppendingString:@"/rule-master"] error:nil];
             
-            [SSZipArchive unzipFileAtPath:[docPath stringByAppendingString:@"/rule.zip"] toDestination:[docPath stringByAppendingString:@"/"] progressHandler:^(NSString * _Nonnull entry, unz_file_info zipInfo, long entryNumber, long total) {
-//                NSLog(@"entry %@",entry);
-    
-            } completionHandler:^(NSString * _Nonnull path, BOOL succeeded, NSError * _Nonnull error) {
-    
-//                NSLog(@"path %@",path);
-                if (succeeded) {
-                    NSString *pathStr = [docPath stringByAppendingPathComponent:@"/rule-master/magnetRule.json"];
-                    NSData *data = [NSData dataWithContentsOfFile:pathStr];
-                    self.dataDic = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil] mutableCopy];
-                    
-                    NSString*vStr = KBundleShortVersionString;
-                    NSString*vData= self.dataDic[@"v"];
-                    NSArray *v_arry =[vStr componentsSeparatedByString:@"."];
-                    NSInteger vStrInt =(([v_arry[0] integerValue]*100)+[v_arry[1] integerValue]*10+[v_arry[2] integerValue]);
-                    v_arry =[vData componentsSeparatedByString:@"."];
-                    NSInteger vDataInt =(([v_arry[0] integerValue]*100)+[v_arry[1] integerValue]*10+[v_arry[2] integerValue]);
-                    NSString*bStr = KFBundleVersion;
-                    NSString*bData= self.dataDic[@"b"];
-                    if (vDataInt>=vStrInt) {
-                        if ([bData doubleValue]<[bStr doubleValue]) {
-                            
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                
-                                
-                                [self.myTableView reloadData];
-                            });
-                        }else{
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                
-                                self.myTableView.hidden = YES;
-                            });
-                        }
-                    }else{
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            
-                            [self.myTableView reloadData];
-                            
-                        });
-                    }
-                }
-            }];
-    
+            [self unZip:docPath];
+            
         }];
         [dataTask resume];
+        
+    }
 }
 - (void)addHistoricalLogs:(NSString*)str{
     if (!str) {

@@ -12,6 +12,7 @@
 #import "CommonMacro.h"
 #import "StatementViewController.h"
 #import <StoreKit/StoreKit.h>
+#import "SVProgressHUD.h"
 
 @interface SettingTableViewController ()
 
@@ -87,6 +88,14 @@
                     
                 }
                     
+                    break;
+                case 3:{
+                    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+                    [[NSFileManager defaultManager]removeItemAtPath:[docPath stringByAppendingString:@"/rule-master"] error:nil];
+                    [[NSFileManager defaultManager]removeItemAtPath:[docPath stringByAppendingString:@"/rule.zip"] error:nil];
+                    [SVProgressHUD showSuccessWithStatus:@"同步成功,下次启动生效!"];
+                    
+                }
                     break;
                 default:
                     break;
