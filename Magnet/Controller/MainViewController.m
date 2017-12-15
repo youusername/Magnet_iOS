@@ -30,13 +30,9 @@
 @interface MainViewController ()<WKUIDelegate,WKNavigationDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UserInfoModel * userInfo;
-@property (weak, nonatomic) IBOutlet UILabel *curLabel;
 @property (weak, nonatomic) IBOutlet UITextField *keyTextField;
 @property (nonatomic,assign) SiteType siteType;
 
-@property (weak, nonatomic) IBOutlet UITableView *myTableView;
-
-@property (nonatomic,strong) NSMutableArray<Class>*viewControllers;
 @property (nonatomic,strong) NSMutableDictionary * dataDic;
 @end
 
@@ -44,12 +40,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    
-    self.viewControllers = [@[[WebViewController class],[URLKeyViewController class],[BarTabViewController class],[UIViewController class],[UINavigationController class]] mutableCopy];
-    
-    
-    [self bingAction:nil];
     
     [self willPasteboard];
     [self initNotification];
@@ -57,7 +47,6 @@
 
     [self initTextField];
     
-    [self downJson];
     
 }
 
@@ -65,7 +54,7 @@
     [super viewWillAppear:animated];
     [SVProgressHUD dismiss];
 }
-
+/*
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger number = 0;
     if (self.dataDic[@"present"]) {
@@ -104,6 +93,7 @@
     web.title = dic[@"name"];
     [self.navigationController pushViewController:web animated:YES];
 }
+*/
 #pragma mark - init
 - (void)initTextField{
     UITextField *textFieldValidation = self.keyTextField;;
@@ -217,20 +207,22 @@
     NSString *regexString = @"http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexString];
     BOOL isMatch = [pred evaluateWithObject:searchString];
-    NSString * keyString =  [searchString stringByReplacingOccurrencesOfString:@"1024" withString:@""];
+    NSString * keyString =  searchString;
     if (isMatch) {
-        UIViewController *urlKeyVC = [self.storyboard instantiateViewControllerWithIdentifier:[self.viewControllers[1] className]];
-        [urlKeyVC setValue:keyString forKey:@"urlString"];
+        URLKeyViewController *urlKeyVC = [self.storyboard instantiateViewControllerWithIdentifier:@"URLKeyViewController"];
+        
+        urlKeyVC.urlString = keyString;
         [self.navigationController pushViewController:urlKeyVC animated:YES];
     }else{
-        UIViewController *barTabVC = [self.storyboard instantiateViewControllerWithIdentifier:[self.viewControllers[2] className]];
-        [barTabVC setValue:keyString forKey:@"keyString"];
+        BarTabViewController *barTabVC = [self.storyboard instantiateViewControllerWithIdentifier:@"BarTabViewController"];
+        barTabVC.keyString = keyString;
         [self.navigationController pushViewController:barTabVC animated:YES];
 
     }
     
     [self addHistoricalLogs:searchString];
 }
+/*
 - (BOOL)unZip:(NSString *)docPath {
     return [SSZipArchive unzipFileAtPath:[docPath stringByAppendingString:@"/rule.zip"] toDestination:[docPath stringByAppendingString:@"/"] progressHandler:^(NSString * _Nonnull entry, unz_file_info zipInfo, long entryNumber, long total) {
         //                NSLog(@"entry %@",entry);
@@ -308,6 +300,7 @@
         
     }
 }
+ */
 - (void)addHistoricalLogs:(NSString*)str{
     if (!str) {
         return;
@@ -324,26 +317,6 @@
      [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 
-- (IBAction)googleAction:(id)sender {
-    [self setCurLabelText:@"Google"];
-    self.siteType = SiteTypeGoogle;
-}
-- (IBAction)bingAction:(id)sender {
-    [self setCurLabelText:@"bing"];
-    self.siteType = SiteTypeBing;
-}
-- (IBAction)sogouAction:(id)sender {
-    [self setCurLabelText:@"sogou"];
-    self.siteType = SiteTypeSogou;
-}
-- (IBAction)baiduAction:(id)sender {
-    [self setCurLabelText:@"baidu"];
-    self.siteType = SiteTypeBaidu;
-}
-
-- (void)setCurLabelText:(NSString*)str{
-    self.curLabel.text = [NSString stringWithFormat:@"当前搜索站点:%@",str];
-}
 
 - (UserInfoModel *)userInfo{
     if (!_userInfo) {

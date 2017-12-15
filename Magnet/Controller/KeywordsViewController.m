@@ -42,11 +42,12 @@
     self.myTableView.tableFooterView = [UIView new];
     
     [self initRefresh];
+    [self loadDataForRule:self.curRuleModel];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    [self loadDataForRule:self.curRuleModel];
+    
 }
 
 - (void)initRefresh{
@@ -61,6 +62,10 @@
     [self loadDataForRule:self.curRuleModel];
 }
 - (void)loadDataForRule:(RuleModel*)model{
+    
+    if (!model) {
+        return;
+    }
     
     if (self.curTask) {
         [self.curTask suspend];

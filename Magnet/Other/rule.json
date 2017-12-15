@@ -1,16 +1,5 @@
  [
   {
-  "site":"种子搜",
-  "certificates":"39fcefade0a6b2ab9c1d8209d311d6ce.crt",
-  "waiting":"0",
-  "group":"//ul[@class='list-group']",
-  "magnet":".//li[@class='list-group-item code text-left']//dl[@class='down']//a//@href",
-  "name":".//li[1]",
-  "size":"./li[@class='list-group-item code text-left']/dl[@class='list-code']/dd[@class='text-size']",
-  "count":"./li[@class='list-group-item code text-left']/dl[@class='list-code']/dd[@class='text-time']",
-  "source":"https://www.zhongziso.com/list/XXX/PPP"
-  },
-  {
   "site":"AOYOSO",
   "waiting":"0",
   "group":"//div[@class='col-md-8']//div[@class='panel panel-default']",
@@ -29,26 +18,6 @@
   "size":".//span[3]//b",
   "count":".//span[2]//b",
   "source":"http://www.ciliba.org/s/XXX_rel_PPP.html"
-  },
-  {
-  "site":"BT云搜",
-  "waiting":"0",
-  "group":"//li[@class='media']",
-  "magnet":".//a//@href",
-  "name":".//a",
-  "size":".//div[@class='media-more']//span[2]",
-  "count":".//div[@class='media-more']//span[1]",
-  "source":"http://www.btyunsou.com/search/XXX_ctime_PPP.html"
-  },
-  {
-  "site":"磁力猪",
-  "waiting":"0",
-  "group":"//div[@class='row']",
-  "magnet":".//div//a//@href",
-  "name":".//a",
-  "size":".//div[@class='col-sm-2 col-lg-1 hidden-xs text-right size']",
-  "count":".//div[@class='col-sm-2 col-lg-2 hidden-xs text-right date']",
-  "source":"http://www.clpig.com/torrent/XXX_PPP.html"
   },
   {
   "site":"cililian.me",
