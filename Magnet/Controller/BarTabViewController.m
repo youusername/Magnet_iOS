@@ -74,8 +74,10 @@
         [self.ruleArray enumerateObjectsUsingBlock:^(RuleModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [tags addObject:obj.site];
         }];
+        CGRect StatusRect = [[UIApplication sharedApplication] statusBarFrame];
         
-        _tagView = [[TagsScrollView alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.navigationController.navigationBar.frame)+20, kScreenWidth, 40)];
+        CGRect NavRect = self.navigationController.navigationBar.frame;
+        _tagView = [[TagsScrollView alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(StatusRect)+CGRectGetHeight(NavRect), kScreenWidth, 40)];
         _tagView.TagsDelegate = self;
         _tagView.backgroundColor = [UIColor whiteColor];
         [_tagView loadTagScrollViewButton:tags];
