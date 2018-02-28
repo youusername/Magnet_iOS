@@ -8,6 +8,7 @@ target 'Magnet' do
   pod 'Ono', :inhibit_warnings => true
   pod 'YYKit', :inhibit_warnings => true
   pod 'Bugly', :inhibit_warnings => true
+  pod 'Masonry', :inhibit_warnings => true
   pod 'MJRefresh', :inhibit_warnings => true
   pod 'LRTextField', :inhibit_warnings => true
   pod 'SSZipArchive', :inhibit_warnings => true

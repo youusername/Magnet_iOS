@@ -12,5 +12,5 @@
 
 @property (nonatomic,strong) RuleModel * curRuleModel;
 @property (nonatomic ,strong) NSString * keyString;
-
+@property (nonatomic,assign) BOOL isEditing;
 @end

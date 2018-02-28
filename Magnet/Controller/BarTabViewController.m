@@ -20,6 +20,8 @@
 @interface BarTabViewController () <HJTabViewControllerDataSource, HJTabViewControllerDelagate,TagsScrollViewDelegate>
 @property (nonatomic,strong) NSArray<RuleModel*> * ruleArray;
 @property (nonatomic,strong) TagsScrollView *tagView;
+@property (nonatomic,strong) NSMutableDictionary *VCDict;
+
 @end
 
 @implementation BarTabViewController
@@ -31,6 +33,7 @@
     self.tabDataSource = self;
     self.tabDelegate = self;
     
+
     self.title = self.keyString;
 }
 - (void)initTagsScrollView{
@@ -38,6 +41,11 @@
     [self.view addSubview:self.tagView];
 }
 
+- (IBAction)mutableSelectAction:(id)sender {
+    NSString *key = [NSString stringWithFormat:@"%ld",self.tagView.selectIndex];
+    KeywordsViewController *keyVC = self.VCDict[key];
+    keyVC.isEditing = !keyVC.isEditing;
+}
 
 #pragma mark -
 - (void)tabViewController:(HJTabViewController *)tabViewController scrollViewDidScrollToIndex:(NSInteger)index{
@@ -54,6 +62,8 @@
     keyVC.keyString = self.keyString;
     keyVC.curRuleModel = self.ruleArray[index];
 //    keyVC.view.frame = CGRectMake(0, 40, kScreenWidth, kScreenHeight);
+    [self.VCDict setObject:keyVC forKey:[NSString stringWithFormat:@"%ld",index]];
+    
     return keyVC;
 }
 
@@ -102,6 +112,12 @@
         _ruleArray = [NSArray modelArrayWithClass:[RuleModel class] json:dic];
     }
     return _ruleArray;
+}
+- (NSMutableDictionary *)VCDict{
+    if(!_VCDict){
+        _VCDict = [NSMutableDictionary dictionary];
+    }
+    return _VCDict;
 }
 
 @end

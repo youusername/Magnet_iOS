@@ -502,7 +502,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ZZY-1b-nWO"/>
+                    <navigationItem key="navigationItem" id="ZZY-1b-nWO">
+                        <barButtonItem key="rightBarButtonItem" title="多选" id="hpN-Tm-sHr">
+                            <connections>
+                                <action selector="mutableSelectAction:" destination="fsH-nT-d4Y" id="iml-JN-wN2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0J-5B-IgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

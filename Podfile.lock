@@ -19,6 +19,7 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - HJTabViewController (1.0.4)
   - LRTextField (1.1.3)
+  - Masonry (1.1.0)
   - MJRefresh (3.1.14)
   - Ono (1.2.2)
   - SSZipArchive (2.1.1)
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - HJTabViewController
   - LRTextField
+  - Masonry
   - MJRefresh
   - Ono
   - SSZipArchive
@@ -49,6 +51,7 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   HJTabViewController: 5b9edf2a4612315b1ed293713246885c3a7f27ca
   LRTextField: 340e3ad5dad7e9dc058252fc1257836b98517248
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 6642e35b3227a5447b9fd5e17c552c90196c9859
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
   SSZipArchive: 14401ade5f8e82aba1ff03e9f88e9de60937ae60
@@ -56,6 +59,6 @@ SPEC CHECKSUMS:
   TTGTagCollectionView: 828087136810b786ce8c30c89acf3877cccb0383
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: b240b130dd255330cd196d32b33764464e67737b
+PODFILE CHECKSUM: cb397fcb8ad4f9eb1e47a726d4915fb4bb3400ce
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.2.1
