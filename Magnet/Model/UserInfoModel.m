@@ -8,8 +8,7 @@
 
 #import "UserInfoModel.h"
 #import "YYKit.h"
-
-#define kUserDefaultsKey    @"magnetUserDefaultsKey"
+#import "CommonMacro.h"
 
 static UserInfoModel*userInfo = nil;
 

@@ -15,7 +15,7 @@
 #import "KeywordsViewController.h"
 #import "SVProgressHUD.h"
 #import "HJTabViewControllerPlugin_TabViewBar.h"
-
+#import "CommonMacro.h"
 
 @interface BarTabViewController () <HJTabViewControllerDataSource, HJTabViewControllerDelagate,TagsScrollViewDelegate>
 @property (nonatomic,strong) NSArray<RuleModel*> * ruleArray;
@@ -74,9 +74,10 @@
         [self.ruleArray enumerateObjectsUsingBlock:^(RuleModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [tags addObject:obj.site];
         }];
-        CGRect StatusRect = [[UIApplication sharedApplication] statusBarFrame];
         
+        CGRect StatusRect = [[UIApplication sharedApplication] statusBarFrame];
         CGRect NavRect = self.navigationController.navigationBar.frame;
+        
         _tagView = [[TagsScrollView alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(StatusRect)+CGRectGetHeight(NavRect), kScreenWidth, 40)];
         _tagView.TagsDelegate = self;
         _tagView.backgroundColor = [UIColor whiteColor];
@@ -87,9 +88,17 @@
 }
 - (NSArray<RuleModel *> *)ruleArray{
     if (!_ruleArray) {
-        NSString * jsonPath = [[NSBundle mainBundle] pathForResource:@"rule" ofType:@"json"];
-        NSData * jsonData = [NSData dataWithContentsOfFile:jsonPath];
-        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
+        NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsJsonKey];
+        
+        if (!data) {
+            NSString * jsonPath = [[NSBundle mainBundle] pathForResource:@"rule" ofType:@"json"];
+            NSData * jsonData = [NSData dataWithContentsOfFile:jsonPath];
+            [[NSUserDefaults standardUserDefaults] setObject:jsonData forKey:kUserDefaultsJsonKey];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            data = jsonData;
+        }
+        
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
         _ruleArray = [NSArray modelArrayWithClass:[RuleModel class] json:dic];
     }
     return _ruleArray;

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		119339B6DB5D4BE4F69E2395 /* Pods_Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6ED82452B5B14F29A1AA60 /* Pods_Magnet.framework */; };
 		6118A3D91FA3917D00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt in Resources */ = {isa = PBXBuildFile; fileRef = 6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */; };
+		6124603220464BAF004E545C /* EditListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6124603120464BAF004E545C /* EditListViewController.m */; };
 		612E57C71F9C933E0023341E /* URLKeyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E57C61F9C933E0023341E /* URLKeyModel.m */; };
 		61352CBE1FB038D700511F45 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61352CBD1FB038D700511F45 /* WebViewController.m */; };
 		61352CC11FB0587500511F45 /* google.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 61352CC01FB0587500511F45 /* google.jpg */; };
@@ -46,6 +47,8 @@
 /* Begin PBXFileReference section */
 		4C6ED82452B5B14F29A1AA60 /* Pods_Magnet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magnet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */ = {isa = PBXFileReference; lastKnownFileType = file; path = 39fcefade0a6b2ab9c1d8209d311d6ce.crt; sourceTree = "<group>"; };
+		6124603020464BAF004E545C /* EditListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditListViewController.h; sourceTree = "<group>"; };
+		6124603120464BAF004E545C /* EditListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditListViewController.m; sourceTree = "<group>"; };
 		612E57C51F9C933E0023341E /* URLKeyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLKeyModel.h; sourceTree = "<group>"; };
 		612E57C61F9C933E0023341E /* URLKeyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLKeyModel.m; sourceTree = "<group>"; };
 		61352CBC1FB038D700511F45 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 				61C29DE11FA8AA6000118B43 /* SearchLogsTableViewController.m */,
 				6168F9521FA9F73F00B6083B /* StatementViewController.h */,
 				6168F9531FA9F73F00B6083B /* StatementViewController.m */,
+				6124603020464BAF004E545C /* EditListViewController.h */,
+				6124603120464BAF004E545C /* EditListViewController.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				61352CBE1FB038D700511F45 /* WebViewController.m in Sources */,
 				613F495C1F9A143E0083CB50 /* MainViewController.m in Sources */,
 				61A4934A1FA0B9A400A1F87F /* BarTabViewController.m in Sources */,
+				6124603220464BAF004E545C /* EditListViewController.m in Sources */,
 				612E57C71F9C933E0023341E /* URLKeyModel.m in Sources */,
 				61A4934F1FA0C71B00A1F87F /* CommonMacro.h in Sources */,
 				6168F9541FA9F73F00B6083B /* StatementViewController.m in Sources */,

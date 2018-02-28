@@ -2,6 +2,8 @@
 
 #define kAppDidBecomeActiveNotification  @"appDidBecomeActive"
 #define MagnetUpdateRuleURL    @"https://github.com/youusername/rule/archive/master.zip"
+#define kUserDefaultsKey    @"magnetUserDefaultsKey"
+#define kUserDefaultsJsonKey    @"listJsonKey"
 
 typedef NS_ENUM(NSInteger, SiteType) {
     SiteTypeNone              = 0,
