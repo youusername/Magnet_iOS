@@ -43,7 +43,7 @@
     
     [self willPasteboard];
     [self initNotification];
-    [self showAffirmation];
+//    [self showAffirmation];
 
     [self initTextField];
     

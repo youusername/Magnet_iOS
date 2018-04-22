@@ -42,6 +42,7 @@
 		61C29DDC1FA89D7900118B43 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C29DDB1FA89D7900118B43 /* SettingTableViewController.m */; };
 		61C29DDF1FA8A1A600118B43 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C29DDE1FA8A1A600118B43 /* UserInfoModel.m */; };
 		61C29DE21FA8AA6000118B43 /* SearchLogsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C29DE11FA8AA6000118B43 /* SearchLogsTableViewController.m */; };
+		61F43006208C5FF80024CFA7 /* LibraryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F43005208C5FF80024CFA7 /* LibraryModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,8 @@
 		61C29DDE1FA8A1A600118B43 /* UserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		61C29DE01FA8AA6000118B43 /* SearchLogsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchLogsTableViewController.h; sourceTree = "<group>"; };
 		61C29DE11FA8AA6000118B43 /* SearchLogsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchLogsTableViewController.m; sourceTree = "<group>"; };
+		61F43004208C5FF80024CFA7 /* LibraryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibraryModel.h; sourceTree = "<group>"; };
+		61F43005208C5FF80024CFA7 /* LibraryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibraryModel.m; sourceTree = "<group>"; };
 		803F1DECBE90BF38C12CB897 /* Pods-Magnet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magnet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Magnet/Pods-Magnet.release.xcconfig"; sourceTree = "<group>"; };
 		B25187C76E21EE0D0D668904 /* Pods-Magnet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magnet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Magnet/Pods-Magnet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,6 +208,8 @@
 				61C29DDE1FA8A1A600118B43 /* UserInfoModel.m */,
 				613DE5B41FAAC84900589CF5 /* UIColor+Hexadecimal.h */,
 				613DE5B51FAAC84A00589CF5 /* UIColor+Hexadecimal.m */,
+				61F43004208C5FF80024CFA7 /* LibraryModel.h */,
+				61F43005208C5FF80024CFA7 /* LibraryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 				6161E40E1F9C74C700E8851F /* URLKeyTableViewCell.m in Sources */,
 				613F49671F9A143E0083CB50 /* main.m in Sources */,
 				6181FABD1F9AE3C800F5FE65 /* RuleModel.m in Sources */,
+				61F43006208C5FF80024CFA7 /* LibraryModel.m in Sources */,
 				6161E4081F9B1AC400E8851F /* KeywordsTableViewCell.m in Sources */,
 				61C29DDF1FA8A1A600118B43 /* UserInfoModel.m in Sources */,
 				6181FABA1F9AE10500F5FE65 /* ResultDataModel.m in Sources */,
@@ -582,7 +588,7 @@
 				INFOPLIST_FILE = Magnet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xt.magnet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.library.magnet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -600,7 +606,7 @@
 				INFOPLIST_FILE = Magnet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xt.magnet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.library.magnet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
