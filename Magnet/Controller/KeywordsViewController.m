@@ -20,6 +20,8 @@
 @interface KeywordsViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *multipleSelectionViewConstraint;
+@property (weak, nonatomic) IBOutlet UIView *multipleSelectionView;
 
 @property (nonatomic,strong) NSMutableArray<ResultDataModel*> *listArray;
 @property (nonatomic,strong) NSURLSessionDataTask *curTask;
@@ -27,7 +29,6 @@
 @property (nonatomic,assign) BOOL isShouldDisplayNoData;
 @property (nonatomic, getter=isLoading) BOOL loading;
 @property (nonatomic,assign) NSInteger page;
-@property (strong, nonatomic) UIView            *editingView;
 @end
 
 @implementation KeywordsViewController
@@ -42,21 +43,12 @@
     self.myTableView.emptyDataSetSource = self;
     self.myTableView.emptyDataSetDelegate = self;
     self.myTableView.tableFooterView = [UIView new];
+    self.multipleSelectionViewConstraint.constant = 0;
+    
     
     [self initRefresh];
     [self loadDataForRule:self.curRuleModel];
     
-    [self.view addSubview:self.editingView];
-    [self.myTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.editingView.mas_top);
-    }];
-    
-    [self.editingView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
-        make.height.equalTo(@45);
-        make.bottom.equalTo(self.view).offset(45);
-    }];
 
 }
 -(void)viewDidAppear:(BOOL)animated{
@@ -297,60 +289,32 @@
 #pragma mark - editingView
 
 - (void)showEitingView:(BOOL)isShow{
-    [self.editingView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view).offset(isShow?0:45);
-    }];
+    
+    self.multipleSelectionViewConstraint.constant = isShow?40:0;
+    
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
     }];
 }
-- (UIView *)editingView{
-    if (!_editingView) {
-        _editingView = [[UIView alloc] init];
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.backgroundColor = [UIColor redColor];
-        [button setTitle:@"删除" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(p__buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-        [_editingView addSubview:button];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.right.bottom.equalTo(_editingView);
-            make.width.equalTo(_editingView).multipliedBy(0.5);
-        }];
-        
-        button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.backgroundColor = [UIColor darkGrayColor];
-        [button setTitle:@"全选" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(p__buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-        [_editingView addSubview:button];
-        [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.bottom.equalTo(_editingView);
-            make.width.equalTo(_editingView).multipliedBy(0.5);
-        }];
-    }
-    return _editingView;
-}
 
-- (void)p__buttonClick:(UIButton *)sender{
-    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"删除"]) {
-        NSMutableIndexSet *insets = [[NSMutableIndexSet alloc] init];
-        [[self.myTableView indexPathsForSelectedRows] enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [insets addIndex:obj.row];
-        }];
-        [self.listArray removeObjectsAtIndexes:insets];
-        [self.myTableView deleteRowsAtIndexPaths:[self.myTableView indexPathsForSelectedRows] withRowAnimation:UITableViewRowAnimationFade];
+
+- (IBAction)p__buttonClick:(UIButton *)sender{
+    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"复制选中"]) {
+        __block NSString * magnet = @"";
         
-        /** 数据清空情况下取消编辑状态*/
-        if (self.listArray.count == 0) {
-            self.navigationItem.rightBarButtonItem.title = @"编辑";
-            [self.myTableView setEditing:NO animated:YES];
-            [self showEitingView:NO];
-            /** 带MJ刷新控件重置状态
-             [self.tableView.footer resetNoMoreData];
-             [self.tableView reloadData];
-             */
-        }
+        
+        [[self.myTableView indexPathsForSelectedRows] enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            ResultDataModel * result = self.listArray[obj.row];
+            magnet = [NSString stringWithFormat:@"%@\n%@",magnet,result.magnet];
+        }];
+
+        UIPasteboard*pasteboard = [UIPasteboard generalPasteboard];
+        [pasteboard setString:magnet];
+        [SVProgressHUD showSuccessWithStatus:@"复制成功!"];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
         
     }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全选"]) {
         [self.listArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -360,11 +324,11 @@
         [sender setTitle:@"全不选" forState:UIControlStateNormal];
     }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"全不选"]){
         [self.myTableView reloadData];
-        /** 遍历反选
-         [[self.tableView indexPathsForSelectedRows] enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-         [self.tableView deselectRowAtIndexPath:obj animated:NO];
+        /** 遍历反选*/
+         [[self.myTableView indexPathsForSelectedRows] enumerateObjectsUsingBlock:^(NSIndexPath * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+         [self.myTableView deselectRowAtIndexPath:obj animated:NO];
          }];
-         */
+        
         
         [sender setTitle:@"全选" forState:UIControlStateNormal];
         
