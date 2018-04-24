@@ -24,7 +24,7 @@
 #import "CAPopUpViewController.h"
 #import "KeywordsViewController.h"
 #import "TTGTextTagCollectionView.h"
-
+#import <AFNetworking/AFNetworking.h>
 
 
 @interface MainViewController ()<WKUIDelegate,WKNavigationDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -46,6 +46,17 @@
 //    [self showAffirmation];
 
     [self initTextField];
+
+//    AFHTTPSessionManager * http = [AFHTTPSessionManager manager];
+//    [http POST:@"https://itunes.apple.com/lookup?id=1375299209" parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+//        
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSArray *array = responseObject[@"results"];
+//        NSDictionary *dict = [array lastObject];
+//        NSLog(@"当前版本为：%@", dict[@"version"]);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        
+//    }];
     
     
 }
