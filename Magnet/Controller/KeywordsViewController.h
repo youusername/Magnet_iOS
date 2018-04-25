@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RuleModel.h"
 
 @interface KeywordsViewController : UIViewController
 
 @property (nonatomic,strong) RuleModel * curRuleModel;
 @property (nonatomic ,strong) NSString * keyString;
 @property (nonatomic,assign) BOOL isEditing;
+
+- (void)showAllCollectList;
 @end

@@ -17,6 +17,8 @@
 #import "UIColor+Hexadecimal.h"
 #import <Masonry/Masonry.h>
 
+#define kAllCollectData    @"allCollectData"
+
 @interface KeywordsViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
@@ -56,6 +58,14 @@
     
     
 }
+
+- (void)showAllCollectList{
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kAllCollectData];
+    
+    NSArray *list  = [NSArray modelArrayWithClass:[ResultDataModel class] json:data];
+    [self.listArray addObjectsFromArray:list];
+    [self.myTableView reloadData];
+}
 - (void)setIsEditing:(BOOL)isEditing{
     _isEditing = isEditing;
     [self.myTableView setEditing:isEditing animated:YES];
@@ -63,6 +73,12 @@
 }
 - (void)initRefresh{
     self.myTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        
+        if (!self.curRuleModel) {
+            [self.myTableView.mj_footer endRefreshing];
+            return ;///没有规则就不做加载更多
+        }
+        
         self.page +=1;
         [self loadDataForRule:self.curRuleModel];
     }];

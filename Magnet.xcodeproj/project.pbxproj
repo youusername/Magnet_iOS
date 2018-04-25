@@ -10,6 +10,7 @@
 		119339B6DB5D4BE4F69E2395 /* Pods_Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6ED82452B5B14F29A1AA60 /* Pods_Magnet.framework */; };
 		6111F06D209054A4003C7428 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6111F06C209054A4003C7428 /* HomeViewController.m */; };
 		6118A3D91FA3917D00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt in Resources */ = {isa = PBXBuildFile; fileRef = 6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */; };
+		611E83BF2090BEED00589721 /* AddCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 611E83BE2090BEED00589721 /* AddCollectViewController.m */; };
 		6124603220464BAF004E545C /* EditListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6124603120464BAF004E545C /* EditListViewController.m */; };
 		612E57C71F9C933E0023341E /* URLKeyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E57C61F9C933E0023341E /* URLKeyModel.m */; };
 		61352CBE1FB038D700511F45 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61352CBD1FB038D700511F45 /* WebViewController.m */; };
@@ -51,6 +52,8 @@
 		6111F06B209054A4003C7428 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		6111F06C209054A4003C7428 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */ = {isa = PBXFileReference; lastKnownFileType = file; path = 39fcefade0a6b2ab9c1d8209d311d6ce.crt; sourceTree = "<group>"; };
+		611E83BD2090BEED00589721 /* AddCollectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddCollectViewController.h; sourceTree = "<group>"; };
+		611E83BE2090BEED00589721 /* AddCollectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddCollectViewController.m; sourceTree = "<group>"; };
 		6124603020464BAF004E545C /* EditListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditListViewController.h; sourceTree = "<group>"; };
 		6124603120464BAF004E545C /* EditListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditListViewController.m; sourceTree = "<group>"; };
 		612E57C51F9C933E0023341E /* URLKeyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLKeyModel.h; sourceTree = "<group>"; };
@@ -246,6 +249,8 @@
 				6161E40A1F9C6A8700E8851F /* URLKeyViewController.m */,
 				61352CBC1FB038D700511F45 /* WebViewController.h */,
 				61352CBD1FB038D700511F45 /* WebViewController.m */,
+				611E83BD2090BEED00589721 /* AddCollectViewController.h */,
+				611E83BE2090BEED00589721 /* AddCollectViewController.m */,
 				6168F9571FA9FDE100B6083B /* Setting */,
 			);
 			path = Controller;
@@ -445,6 +450,7 @@
 				613F49671F9A143E0083CB50 /* main.m in Sources */,
 				6181FABD1F9AE3C800F5FE65 /* RuleModel.m in Sources */,
 				61F43006208C5FF80024CFA7 /* LibraryModel.m in Sources */,
+				611E83BF2090BEED00589721 /* AddCollectViewController.m in Sources */,
 				6161E4081F9B1AC400E8851F /* KeywordsTableViewCell.m in Sources */,
 				61C29DDF1FA8A1A600118B43 /* UserInfoModel.m in Sources */,
 				6181FABA1F9AE10500F5FE65 /* ResultDataModel.m in Sources */,
