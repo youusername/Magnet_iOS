@@ -775,10 +775,10 @@
             </objects>
             <point key="canvasLocation" x="-1252" y="133"/>
         </scene>
-        <!--View Controller-->
+        <!--磁力图书馆-->
         <scene sceneID="3Ws-6o-w74">
             <objects>
-                <viewController id="9G3-4M-9NC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="9G3-4M-9NC" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="l6h-3Q-CIF"/>
                         <viewControllerLayoutGuide type="bottom" id="E1n-9X-8ZP"/>
@@ -797,6 +797,12 @@
                                             <constraint firstAttribute="height" constant="156" id="9oM-jc-ha8"/>
                                         </constraints>
                                         <state key="normal" title="所有收藏"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuP-1c-DpQ">
                                         <rect key="frame" x="191.5" y="8" width="175.5" height="75"/>
@@ -805,6 +811,12 @@
                                             <constraint firstAttribute="height" constant="75" id="yhK-gC-MSP"/>
                                         </constraints>
                                         <state key="normal" title="设置"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7z-jH-AwQ">
                                         <rect key="frame" x="8" y="172" width="175.5" height="70"/>
@@ -813,6 +825,12 @@
                                             <constraint firstAttribute="height" constant="70" id="ZIs-y0-h9r"/>
                                         </constraints>
                                         <state key="normal" title="添加收藏"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsT-DF-CrK">
                                         <rect key="frame" x="191.5" y="169" width="175.5" height="73"/>
@@ -821,6 +839,12 @@
                                             <constraint firstAttribute="height" constant="73" id="uHQ-h6-RHH"/>
                                         </constraints>
                                         <state key="normal" title="网络搜索"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPh-Ld-Nac">
                                         <rect key="frame" x="191.5" y="91" width="175.5" height="70"/>
@@ -829,9 +853,15 @@
                                             <constraint firstAttribute="height" constant="70" id="hB4-dg-tO2"/>
                                         </constraints>
                                         <state key="normal" title="本地搜索"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0wb-4d-eiW" secondAttribute="trailing" constant="20" symbolic="YES" id="1SR-of-8tx"/>
                                     <constraint firstItem="X7z-jH-AwQ" firstAttribute="width" secondItem="ASj-iJ-zVe" secondAttribute="width" multiplier="0.5" constant="-12" id="3AY-Vq-AZI"/>
@@ -855,24 +885,52 @@
                                     <constraint firstItem="TuP-1c-DpQ" firstAttribute="top" secondItem="ASj-iJ-zVe" secondAttribute="top" constant="8" id="wkq-GM-T62"/>
                                     <constraint firstItem="X7z-jH-AwQ" firstAttribute="top" secondItem="0wb-4d-eiW" secondAttribute="bottom" constant="8" id="zFB-Vn-5Sy"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="7"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="rect" keyPath="layer.shadowOffset">
+                                        <rect key="value" x="2" y="2" width="2" height="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="duO-qq-SOE">
-                                <rect key="frame" x="0.0" y="314" width="375" height="353"/>
+                                <rect key="frame" x="0.0" y="324" width="375" height="343"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="RVk-EF-B8P">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RVk-EF-B8P" id="zja-xm-Y0i">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9G3-4M-9NC" id="6Ib-ta-LLA"/>
+                                    <outlet property="delegate" destination="9G3-4M-9NC" id="bFz-OL-Syt"/>
+                                </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.78405162003187923" green="0.88057418758013317" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="duO-qq-SOE" secondAttribute="trailing" id="9fJ-Vv-Xyn"/>
                             <constraint firstItem="ASj-iJ-zVe" firstAttribute="leading" secondItem="2I6-er-IIH" secondAttribute="leading" id="I9d-aO-Lp5"/>
                             <constraint firstItem="duO-qq-SOE" firstAttribute="leading" secondItem="2I6-er-IIH" secondAttribute="leading" id="Lo4-Th-29B"/>
-                            <constraint firstItem="duO-qq-SOE" firstAttribute="top" secondItem="ASj-iJ-zVe" secondAttribute="bottom" id="aOU-22-4jq"/>
+                            <constraint firstItem="duO-qq-SOE" firstAttribute="top" secondItem="ASj-iJ-zVe" secondAttribute="bottom" constant="10" id="aOU-22-4jq"/>
                             <constraint firstItem="E1n-9X-8ZP" firstAttribute="top" secondItem="duO-qq-SOE" secondAttribute="bottom" id="af3-Ox-5th"/>
                             <constraint firstAttribute="trailing" secondItem="ASj-iJ-zVe" secondAttribute="trailing" id="cuk-Yf-I7V"/>
                             <constraint firstItem="ASj-iJ-zVe" firstAttribute="top" secondItem="l6h-3Q-CIF" secondAttribute="bottom" id="np9-fD-zBH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="j5g-uQ-aCS"/>
+                    <navigationItem key="navigationItem" title="磁力图书馆" id="j5g-uQ-aCS"/>
+                    <connections>
+                        <outlet property="localSearchButtonHeight" destination="hB4-dg-tO2" id="PSE-Fo-Gt5"/>
+                        <outlet property="myTableView" destination="duO-qq-SOE" id="48z-MC-UW2"/>
+                        <outlet property="networkSearchButton" destination="lsT-DF-CrK" id="WhS-nu-hmQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uj-Ri-Ea7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

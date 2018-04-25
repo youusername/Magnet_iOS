@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		119339B6DB5D4BE4F69E2395 /* Pods_Magnet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6ED82452B5B14F29A1AA60 /* Pods_Magnet.framework */; };
+		6111F06D209054A4003C7428 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6111F06C209054A4003C7428 /* HomeViewController.m */; };
 		6118A3D91FA3917D00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt in Resources */ = {isa = PBXBuildFile; fileRef = 6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */; };
 		6124603220464BAF004E545C /* EditListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6124603120464BAF004E545C /* EditListViewController.m */; };
 		612E57C71F9C933E0023341E /* URLKeyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 612E57C61F9C933E0023341E /* URLKeyModel.m */; };
@@ -47,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		4C6ED82452B5B14F29A1AA60 /* Pods_Magnet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Magnet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6111F06B209054A4003C7428 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		6111F06C209054A4003C7428 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		6118A3D81FA3906A00409599 /* 39fcefade0a6b2ab9c1d8209d311d6ce.crt */ = {isa = PBXFileReference; lastKnownFileType = file; path = 39fcefade0a6b2ab9c1d8209d311d6ce.crt; sourceTree = "<group>"; };
 		6124603020464BAF004E545C /* EditListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditListViewController.h; sourceTree = "<group>"; };
 		6124603120464BAF004E545C /* EditListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditListViewController.m; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 		613F49711F9A21FF0083CB50 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6111F06B209054A4003C7428 /* HomeViewController.h */,
+				6111F06C209054A4003C7428 /* HomeViewController.m */,
 				613F495A1F9A143E0083CB50 /* MainViewController.h */,
 				613F495B1F9A143E0083CB50 /* MainViewController.m */,
 				61A493481FA0B9A400A1F87F /* BarTabViewController.h */,
@@ -417,7 +422,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -450,6 +455,7 @@
 				613DE5B61FAAC84A00589CF5 /* UIColor+Hexadecimal.m in Sources */,
 				613F497C1F9A30E00083CB50 /* DownHtml.m in Sources */,
 				613F49591F9A143E0083CB50 /* AppDelegate.m in Sources */,
+				6111F06D209054A4003C7428 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
