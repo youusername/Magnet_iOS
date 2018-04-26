@@ -20,11 +20,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-#ifdef RELEASE
+
     [Bugly startWithAppId:@"1322e6986d"];
-#endif
-    
-    
+
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     
     
