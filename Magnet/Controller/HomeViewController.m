@@ -131,9 +131,7 @@
 //        KeywordsTableViewCell *table_cell = (KeywordsTableViewCell *)cell;
 //        table_cell.model = self.listArray[indexPath.row];
 //    }
-    
-    
-    
+ 
     return cell;
 }
 

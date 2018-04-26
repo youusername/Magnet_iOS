@@ -31,6 +31,7 @@
 @property (nonatomic,assign) BOOL isShouldDisplayNoData;
 @property (nonatomic, getter=isLoading) BOOL loading;
 @property (nonatomic,assign) NSInteger page;
+@property (nonatomic,assign) BOOL isDelete;
 @end
 
 @implementation KeywordsViewController
@@ -60,6 +61,7 @@
 }
 
 - (void)showAllCollectList{
+    self.isDelete = YES;
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kAllCollectData];
     
     NSArray *list  = [NSArray modelArrayWithClass:[ResultDataModel class] json:data];
@@ -68,6 +70,7 @@
 }
 
 - (void)showListArray:(NSMutableArray<ResultDataModel*> *)Array{
+    self.isDelete = YES;
     [self.listArray addObjectsFromArray:Array];
     [self.myTableView reloadData];
     if (Array.count == 0) {
@@ -188,8 +191,11 @@
     return cell;
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
-    
+    if (self.isDelete) {
+        return UITableViewCellEditingStyleDelete;
+    }else{
+        return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -212,6 +218,19 @@
               [SVProgressHUD dismiss];
               });
       }
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.isDelete) {
+        if (editingStyle ==UITableViewCellEditingStyleDelete) {
+            [tableView beginUpdates];
+            [tableView deleteRowsAtIndexPaths:@[indexPath]withRowAnimation: UITableViewRowAnimationRight];
+            [self.listArray removeObjectAtIndex:indexPath.row];
+            [[NSUserDefaults standardUserDefaults] setObject:[self.listArray modelToJSONData] forKey:kAllCollectData];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [tableView endUpdates];
+        }
+    }
+    
 }
 
 #pragma mark - GET
