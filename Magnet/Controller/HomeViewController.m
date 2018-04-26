@@ -30,13 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.listArray = [NSMutableArray array];
-//    if (0) {
-//        self.networkSearchButton.hidden = YES;
-//        self.localSearchButtonHeight.constant = 70+73+8;
-//    }else{
-//        self.networkSearchButton.hidden = NO;
-//        self.localSearchButtonHeight.constant = 70;
-//    }
+
 }
 
 #pragma mark - IBAction
