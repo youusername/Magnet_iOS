@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingTableViewController : UITableViewController
-
+@property (nonatomic,assign) BOOL isShow;
 @end

@@ -43,7 +43,16 @@
     ResultDataModel *newModel = [ResultDataModel new];
     newModel.name = self.nameTextField.text;
     newModel.magnet = self.magnetTextView.text;
+    // 获取系统当前时间
+    NSDate * date = [NSDate date];
+    NSTimeInterval sec = [date timeIntervalSinceNow];
+    NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
     
+    //设置时间输出格式：
+    NSDateFormatter * df = [[NSDateFormatter alloc] init ];
+    [df setDateFormat:@"yyyy.MM.dd HH:mm:ss"];
+    NSString * na = [df stringFromDate:currentDate];
+    newModel.count = na;
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kAllCollectData];
     NSArray *list  = [NSArray modelArrayWithClass:[ResultDataModel class] json:data];
     

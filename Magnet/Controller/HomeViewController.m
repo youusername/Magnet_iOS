@@ -49,10 +49,11 @@
 }
 - (IBAction)setting:(id)sender {
     SettingTableViewController *setting = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SettingTableViewController"];
-    
+    setting.isShow = self.isNetworkSearch;
     [self.navigationController pushViewController:setting animated:YES];
 }
 - (IBAction)localSearch:(id)sender {
+    [self performSegueWithIdentifier:@"homePushLocal" sender:nil];
 }
 - (IBAction)addCollect:(id)sender {
     [self performSegueWithIdentifier:@"homePushAdd" sender:nil];
@@ -81,15 +82,16 @@
                 NSDictionary *dict = [array lastObject];
         
                 NSString * shortV = KBundleShortVersionString;
-//                if (dict == nil || [dict[@"version"] floatValue] <= [shortV floatValue]) {
-//                    self.networkSearchButton.hidden = YES;
-//                    self.localSearchButtonHeight.constant = 70+73+8;
-//                    self.isNetworkSearch = NO;
-//                }else{
+                if (dict == nil || [dict[@"version"] floatValue] < [shortV floatValue]) {
+
+                    self.networkSearchButton.hidden = YES;
+                    self.localSearchButtonHeight.constant = 70+73+8;
+                    self.isNetworkSearch = NO;
+                }else{
                     self.networkSearchButton.hidden = NO;
                     self.localSearchButtonHeight.constant = 70;
                     self.isNetworkSearch = YES;
-//                }
+                }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
             }];

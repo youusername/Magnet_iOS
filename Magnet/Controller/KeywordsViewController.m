@@ -66,6 +66,15 @@
     [self.listArray addObjectsFromArray:list];
     [self.myTableView reloadData];
 }
+
+- (void)showListArray:(NSMutableArray<ResultDataModel*> *)Array{
+    [self.listArray addObjectsFromArray:Array];
+    [self.myTableView reloadData];
+    if (Array.count == 0) {
+        [SVProgressHUD showInfoWithStatus:@"没有相关收藏!"];
+    }
+}
+
 - (void)setIsEditing:(BOOL)isEditing{
     _isEditing = isEditing;
     [self.myTableView setEditing:isEditing animated:YES];

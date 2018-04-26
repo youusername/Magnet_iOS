@@ -49,14 +49,29 @@
     self.searchSwitch.on = self.userInfo.isSearchLogs;
     
 }
+- (void)setIsShow:(BOOL)isShow{
 
+    _isShow = isShow;
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        if (self.isShow) {
+            return 44;
+        }else{
+            return 0;
+        }
+    }else{
+        return 44;
+    }
+        
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.section) {
         case 0:{
@@ -121,9 +136,9 @@
                 case 1:{
 //                    为APP评分
                     
-                    static NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1306575398";
-                    static NSString *templateReviewURLiOS7 = @"itms-apps://itunes.apple.com/app/id1306575398";
-                    static NSString *templateReviewURLiOS8 = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1306575398&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
+                    static NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1375299209";
+                    static NSString *templateReviewURLiOS7 = @"itms-apps://itunes.apple.com/app/id1375299209";
+                    static NSString *templateReviewURLiOS8 = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1375299209&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
                     
                     NSString *reviewURL = templateReviewURL;
                     // iOS 7 needs a different templateReviewURL @see https://github.com/arashpayan/appirater/issues/131

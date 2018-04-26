@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RuleModel.h"
+#import "ResultDataModel.h"
 
 @interface KeywordsViewController : UIViewController
 
@@ -16,4 +16,5 @@
 @property (nonatomic,assign) BOOL isEditing;
 
 - (void)showAllCollectList;
+- (void)showListArray:(NSMutableArray<ResultDataModel*> *)lisArray;
 @end
