@@ -601,7 +601,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="32" placeholder="备注名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ImU-NT-94N">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="备注名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ImU-NT-94N">
                                 <rect key="frame" x="16" y="199" width="343" height="30"/>
                                 <color key="backgroundColor" red="0.67904711740000001" green="0.84082053509999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -611,7 +611,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="magnet:?xt=urn:btih:6c2fc16cb553eab5be4882528ff32020b5064964" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Pgn-P2-nBl">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Pgn-P2-nBl">
                                 <rect key="frame" x="16" y="258" width="343" height="128"/>
                                 <color key="backgroundColor" red="0.67904711740000001" green="0.84082053509999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -634,10 +634,19 @@
                                     <action selector="addAction:" destination="9Tm-VT-0na" eventType="touchUpInside" id="MDM-tt-XPN"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加一条记录吧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGc-qr-XfF">
+                                <rect key="frame" x="16" y="159" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vGc-qr-XfF" secondAttribute="trailing" constant="16" id="7Cs-9Z-BHT"/>
                             <constraint firstItem="ImU-NT-94N" firstAttribute="leading" secondItem="caL-RM-yEN" secondAttribute="leading" constant="16" id="CBY-58-RQF"/>
+                            <constraint firstItem="vGc-qr-XfF" firstAttribute="leading" secondItem="caL-RM-yEN" secondAttribute="leading" constant="16" id="OTE-iM-XoD"/>
+                            <constraint firstItem="ImU-NT-94N" firstAttribute="top" secondItem="vGc-qr-XfF" secondAttribute="bottom" constant="19" id="Qdq-pC-n9C"/>
                             <constraint firstItem="Pgn-P2-nBl" firstAttribute="top" secondItem="ImU-NT-94N" secondAttribute="bottom" constant="29" id="ar3-H7-5uX"/>
                             <constraint firstAttribute="trailing" secondItem="Pgn-P2-nBl" secondAttribute="trailing" constant="16" id="c1L-Yo-M2S"/>
                             <constraint firstItem="ImU-NT-94N" firstAttribute="top" secondItem="aQy-hc-JJk" secondAttribute="bottom" constant="135" id="nj6-0a-unr"/>
