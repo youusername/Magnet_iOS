@@ -44,6 +44,22 @@ DEPENDENCIES:
   - TTGTagCollectionView
   - YYKit
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - Bugly
+    - CAPopUpViewController
+    - DZNEmptyDataSet
+    - HJTabViewController
+    - LRTextField
+    - Masonry
+    - MJRefresh
+    - Ono
+    - SSZipArchive
+    - SVProgressHUD
+    - TTGTagCollectionView
+    - YYKit
+
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bugly: da3c02408c14838d498429320545a8e439392978
@@ -61,4 +77,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: cb397fcb8ad4f9eb1e47a726d4915fb4bb3400ce
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.6.1
